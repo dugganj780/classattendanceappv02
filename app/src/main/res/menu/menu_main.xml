@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/all_modules"
+        android:title="@string/menu_allModules"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/my_modules"
+        android:title="@string/menu_myModules"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/my_account"
+        android:title="@string/menu_myAccount"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/logout"
+        android:title="@string/menu_logout"
+        app:showAsAction="never" />
+</menu>

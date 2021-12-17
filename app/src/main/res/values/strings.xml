@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Class Attendance App</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="hint_moduleCode">Module Code</string>
+    <string name="hint_moduleTitle">Module Title</string>
+    <string name="button_addModule">Add Module</string>
+    <string name="menu_addModule">Add</string>
+    <string name="menu_back">Back</string>
+    <string name="button_signInPerson">In Attendance</string>
+    <string name="button_signInLive">Watching Live Online</string>
+    <string name="button_signInRecording">Watching a Recording</string>
+    <string name="button_seeAttendance">Check Attendance</string>
+    <string name="button_login">Login</string>
+    <string name="button_createAccount">Create Account</string>
+    <string name="button_moduleSelection">Confirm Selection</string>
+    <string name="hint_studentId">Student Number</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_firstName">First Name</string>
+    <string name="hint_surname">Surname</string>
+    <string name="hint_cancelMessage">Enter message to students</string>
+    <string name="button_cancelLecture">Update Notification</string>
+    <string name="data_missing">Data missing. Please check and try again.</string>
+    <string name="menu_allModules">All Modules</string>
+    <string name="menu_myModules">My Modules</string>
+    <string name="menu_myAccount">My Account</string>
+    <string name="menu_logout">Logout</string>
+    <string name="modulesNotFound">You are not currently registered for any modules</string>
+
+</resources>
