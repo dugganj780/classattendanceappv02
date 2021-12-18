@@ -17,6 +17,7 @@ import com.google.android.material.snackbar.Snackbar
 import ie.wit.classattendanceapp.databinding.HomeBinding
 import ie.wit.classattendanceapp.databinding.NavHeaderMainBinding
 import ie.wit.classattendanceapp.R
+import timber.log.Timber
 
 
 class Home : AppCompatActivity() {
@@ -33,16 +34,18 @@ class Home : AppCompatActivity() {
         homeBinding = HomeBinding.inflate(layoutInflater)
         setContentView(homeBinding.root)
         drawerLayout = homeBinding.drawerLayout
-//        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-//        setSupportActionBar(toolbar)
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
         val navController = findNavController(R.id.nav_host_fragment)
+        Timber.i("NavController: $navController")
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
 
         appBarConfiguration = AppBarConfiguration(setOf(
             R.id.moduleListFragment, R.id.moduleSelectionFragment, R.id.accountSettingsFragment), drawerLayout)
+        Timber.i("App Bar Configuration: $appBarConfiguration")
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         val navView = homeBinding.navView

@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,6 +34,7 @@ class ModuleListFragment : Fragment(), ModuleListener {
     private var _fragBinding: FragmentModuleListBinding? = null
     private val fragBinding get() = _fragBinding!!
     private lateinit var moduleListViewModel: ModuleListViewModel
+    private val args by navArgs<ModuleListFragmentArgs>()
     var student = UserModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,11 +60,6 @@ class ModuleListFragment : Fragment(), ModuleListener {
 
         })
 
-        val fab: FloatingActionButton = fragBinding.fab
-        fab.setOnClickListener {
-            val action = ModuleListFragmentDirections.actionReportFragmentToDonateFragment()
-            findNavController().navigate(action)
-        }
         setSwipeRefresh()
         return root
     }
@@ -89,15 +86,13 @@ class ModuleListFragment : Fragment(), ModuleListener {
     }
 
     override fun onModuleClick(module: ModuleModel){
-        val launcherIntent = Intent(this, ModuleFragment::class.java)
-        launcherIntent.putExtra("module_selected", module)
-        launcherIntent.putExtra("student_logged_in", student)
-        startActivityForResult(launcherIntent, 0)
+        val action = ModuleListFragmentDirections.actionModuleListFragmentToModuleFragment(module.id)
+        findNavController().navigate(action)
     }
 
     override fun onResume() {
         super.onResume()
-        moduleListViewModel.load()
+        moduleListViewModel.getUserModules(args.studentId)
     }
 
     override fun onDestroyView() {
@@ -108,8 +103,7 @@ class ModuleListFragment : Fragment(), ModuleListener {
     fun setSwipeRefresh() {
         fragBinding.swiperefresh.setOnRefreshListener {
             fragBinding.swiperefresh.isRefreshing = true
-            moduleListViewModel.load()
-        }
+            moduleListViewModel.getUserModules(args.studentId)        }
     }
 
     fun checkSwipeRefresh() {

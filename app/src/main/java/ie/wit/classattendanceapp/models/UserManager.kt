@@ -5,18 +5,18 @@ import java.util.*
 
 
 
-class UserManager : UserStore{
+object UserManager : UserStore{
     var users = mutableListOf<UserModel>()
 
     override fun findAllUsers(): List<UserModel> {
         return users
     }
 
-    override fun findUserModules(student: UserModel): List<ModuleModel> {
+    override fun findUserModules(studentId: Long): List<ModuleModel> {
         var modules: List<ModuleModel> = mutableListOf(ModuleModel())
-        var foundUser: UserModel? = users.find { p -> p.studentID == student.studentID }
+        val foundUser: UserModel? = users.find { it.studentID == studentId }
         if (foundUser != null) {
-            modules = student.modules
+            modules = foundUser.modules
         }
         return modules
     }

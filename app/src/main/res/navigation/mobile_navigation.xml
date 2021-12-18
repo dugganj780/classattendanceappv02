@@ -3,23 +3,90 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/launchFragment">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="ie.wit.classattendanceapp.ui.lecture.LectureFragment"
-        android:label="@string/menu_allModules"
-        tools:layout="@layout/home" />
+        android:id="@+id/launchFragment"
+        android:name="ie.wit.classattendanceapp.ui.launch.LaunchFragment"
+        tools:layout="@layout/fragment_launch" >
+        <action
+            android:id="@+id/action_LaunchFragment_to_LoginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_LaunchFragment_to_CreateAccountFragment"
+            app:destination="@id/createAccountFragment" />
+    </fragment>
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="ie.wit.classattendanceapp.ui.attendance.GalleryFragment"
+        android:id="@+id/loginFragment"
+        android:name="ie.wit.classattendanceapp.ui.login.LoginFragment"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_LoginFragment_to_ModuleListFragment"
+            app:destination="@id/moduleListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/createAccountFragment"
+        android:name="ie.wit.classattendanceapp.ui.createaccount.CreateAccountFragment"
+        tools:layout="@layout/fragment_create_account" >
+        <action
+            android:id="@+id/action_CreateAccountFragment_to_ModuleListFragment"
+            app:destination="@id/moduleListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/moduleListFragment"
+        android:name="ie.wit.classattendanceapp.ui.modulelist.ModuleListFragment"
         android:label="@string/menu_myModules"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_module_list" >
+        <action
+            android:id="@+id/action_moduleListFragment_to_moduleFragment"
+            app:destination="@id/moduleFragment" />
+        <argument
+            android:name="studentId"
+            app:argType="long" />
+
+    </fragment>
 
     <fragment
-        android:id="@+id/nav_slideshow"
+        android:id="@+id/moduleSelectionFragment"
+        android:name="ie.wit.classattendanceapp.ui.moduleselection.ModuleSelectionFragment"
+        android:label="@string/menu_myModules"
+        tools:layout="@layout/fragment_module_selection" >
+        <action
+            android:id="@+id/action_moduleSelectionFragment_to_moduleListFragment"
+            app:destination="@id/moduleListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/lectureFragment"
+        android:name="ie.wit.classattendanceapp.ui.lecture.LectureFragment"
+        android:label="Lecture"
+        tools:layout="@layout/fragment_lecture" >
+        <action
+            android:id="@+id/action_lectureFragment_to_moduleListFragment"
+            app:destination="@id/moduleListFragment" />
+        <argument
+            android:name="lectureId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/moduleFragment"
         android:name="ie.wit.classattendanceapp.ui.module.ModuleFragment"
-        android:label="@string/menu_myAccount"
-        tools:layout="@layout/fragment_slideshow" />
+        android:label="Module Lectures"
+        tools:layout="@layout/fragment_module" >
+        <action
+            android:id="@+id/action_moduleFragment_to_lectureFragment"
+            app:destination="@id/lectureFragment" />
+        <argument
+            android:name="id"
+            app:argType="long" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="ie.wit.classattendanceapp.ui.lecture.LectureFragment"
+        android:label="Lecture"
+        tools:layout="@layout/fragment_lecture" >
+    </fragment>
 </navigation>

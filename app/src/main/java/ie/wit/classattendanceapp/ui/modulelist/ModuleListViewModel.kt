@@ -5,27 +5,23 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ie.wit.classattendanceapp.models.ModuleManager
 import ie.wit.classattendanceapp.models.ModuleModel
+import ie.wit.classattendanceapp.models.UserManager
+import ie.wit.classattendanceapp.models.UserModel
 import timber.log.Timber
 
 class ModuleListViewModel : ViewModel() {
 
     private val moduleList = MutableLiveData<List<ModuleModel>>()
+    private val student = MutableLiveData<UserModel>()
 
     val observableModuleList: LiveData<List<ModuleModel>>
         get() = moduleList
 
-    init {
-        load()
-    }
+    val observableStudent: LiveData<UserModel>
+        get() = student
 
-    fun load() {
-        try {
-            ModuleManager.findAll()
-            Timber.i("Retrofit Success : $moduleList.value")
-        }
-        catch (e: Exception) {
-            Timber.i("Retrofit Error : $e.message")
-        }
+    fun getUserModules(studentId: Long) {
+        moduleList.value = UserManager.findUserModules(studentId)
     }
 /*
     fun delete(id: String) {

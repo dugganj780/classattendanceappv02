@@ -8,37 +8,44 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
+import ie.wit.classattendanceapp.databinding.FragmentLectureBinding
 import ie.wit.classattendanceapp.databinding.HomeBinding
+import ie.wit.classattendanceapp.models.LectureModel
 
 class LectureFragment : Fragment() {
 
-    private lateinit var homeViewModel: LectureViewModel
-    private var _binding: HomeBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    private lateinit var lectureViewModel: LectureViewModel
+    private val args by navArgs<LectureFragmentArgs>()
+    private var _fragBinding: FragmentLectureBinding? = null
+    private val fragBinding get() = _fragBinding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-            ViewModelProvider(this).get(LectureViewModel::class.java)
+        _fragBinding = FragmentLectureBinding.inflate(inflater, container, false)
+        val root = fragBinding.root
 
-        _binding = HomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        val textView: TextView = binding.
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
+        lectureViewModel = ViewModelProvider(this).get(LectureViewModel::class.java)
+        lectureViewModel.observableLecture.observe(viewLifecycleOwner, Observer { render() })
         return root
-    }
+        }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+
+private fun render() {
+    // fragBinding.editAmount.setText(donation.amount.toString())
+    // fragBinding.editPaymenttype.text = donation.paymentmethod
+    fragBinding.lecturevm = lectureViewModel
+}
+
+override fun onResume() {
+    super.onResume()
+    fragBinding.lecturevm = lectureViewModel
+}
+
+override fun onDestroyView() {
+    super.onDestroyView()
+    _fragBinding = null
+}
 }
