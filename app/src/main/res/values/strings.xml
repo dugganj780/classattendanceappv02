@@ -20,6 +20,7 @@
     <string name="button_createAccount">Create Account</string>
     <string name="button_moduleSelection">Confirm Selection</string>
     <string name="hint_studentId">Student Number</string>
+    <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
     <string name="hint_firstName">First Name</string>
     <string name="hint_surname">Surname</string>
@@ -31,5 +32,7 @@
     <string name="menu_myAccount">My Account</string>
     <string name="menu_logout">Logout</string>
     <string name="modulesNotFound">You are not currently registered for any modules</string>
+    <string name="auth_failed">Authentication failed</string>
+
 
 </resources>

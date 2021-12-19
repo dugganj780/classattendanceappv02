@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.login.LoginFragment">
+    tools:context=".ui.login.Login">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -41,13 +41,13 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/studentId"
+                    android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_margin="8dp"
                     android:autofillHints=""
-                    android:hint="@string/hint_studentId"
-                    android:inputType="number"
+                    android:hint="@string/hint_email"
+                    android:inputType="textEmailAddress"
                     android:maxLength="25"
                     android:maxLines="1"
                     android:padding="8dp"

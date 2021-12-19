@@ -66,13 +66,26 @@
                     android:textColor="@color/uccBlue"
                     android:textSize="14sp" />
                 <EditText
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_margin="8dp"
+                    android:autofillHints=""
+                    android:hint="@string/hint_studentId"
+                    android:inputType="textEmailAddress"
+                    android:maxLength="25"
+                    android:maxLines="1"
+                    android:padding="8dp"
+                    android:textColor="@color/uccBlue"
+                    android:textSize="14sp" />
+                <EditText
                     android:id="@+id/student_id"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_margin="8dp"
                     android:autofillHints=""
                     android:hint="@string/hint_studentId"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:maxLength="25"
                     android:maxLines="1"
                     android:padding="8dp"

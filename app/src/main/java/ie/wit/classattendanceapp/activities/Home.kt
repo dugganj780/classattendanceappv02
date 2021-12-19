@@ -14,9 +14,12 @@ import androidx.navigation.Navigation.findNavController
 import androidx.navigation.ui.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseUser
 import ie.wit.classattendanceapp.databinding.HomeBinding
 import ie.wit.classattendanceapp.databinding.NavHeaderMainBinding
 import ie.wit.classattendanceapp.R
+import ie.wit.classattendanceapp.ui.login.Login
+import ie.wit.classattendanceapp.ui.login.LoginViewModel
 import timber.log.Timber
 
 
@@ -26,7 +29,7 @@ class Home : AppCompatActivity() {
     private lateinit var homeBinding : HomeBinding
     private lateinit var navHeaderBinding : NavHeaderMainBinding
     private lateinit var appBarConfiguration: AppBarConfiguration
-    //private lateinit var loggedInViewModel : LoggedInViewModel
+    private lateinit var loginViewModel : LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +53,28 @@ class Home : AppCompatActivity() {
 
         val navView = homeBinding.navView
         navView.setupWithNavController(navController)
+    }
+
+    public override fun onStart() {
+        super.onStart()
+        loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+        loginViewModel.liveFirebaseUser.observe(this, Observer { firebaseUser ->
+            if (firebaseUser != null)
+                updateNavHeader(loginViewModel.liveFirebaseUser.value!!)
+        })
+
+        loginViewModel.loggedOut.observe(this, Observer { loggedout ->
+            if (loggedout) {
+                startActivity(Intent(this, Login::class.java))
+            }
+        })
+
+    }
+
+    private fun updateNavHeader(currentUser: FirebaseUser) {
+        var headerView = homeBinding.navView.getHeaderView(0)
+        navHeaderBinding = NavHeaderMainBinding.bind(headerView)
+        //navHeaderBinding.navHeaderEmail.text = currentUser.email
     }
 
     override fun onSupportNavigateUp(): Boolean {

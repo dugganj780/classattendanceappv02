@@ -20,10 +20,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import ie.wit.classattendanceapp.R
-import ie.wit.classattendanceapp.databinding.FragmentModuleListBinding
 import ie.wit.classattendanceapp.main.ClassAttendanceApp
 import ie.wit.classattendanceapp.adapters.ModuleAdapter
 import ie.wit.classattendanceapp.adapters.ModuleListener
+import ie.wit.classattendanceapp.databinding.FragmentModuleListBinding
 import ie.wit.classattendanceapp.models.ModuleModel
 import ie.wit.classattendanceapp.models.UserModel
 import timber.log.Timber
@@ -132,6 +132,29 @@ class ModuleListFragment : Fragment(), ModuleListener {
     }
 
  */
+}
+
+{
+    "rules": {
+    "users": {
+    "$uid:{
+    ".write": "auth.uid != null",
+    ".read": "auth.uid != null"
+}
+},
+    "modules": {
+    "$uid": {
+    ".write": "$uid === auth.uid",
+    ".read": "$uid === auth.uid"
+}
+},
+    "signIns": {
+    "$uid": {
+    ".write": "$uid === auth.uid",
+    ".read": "$uid === auth.uid"
+}
+},
+}
 }
 
 

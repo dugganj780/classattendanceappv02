@@ -1,10 +1,13 @@
 package ie.wit.classattendanceapp.models
 
+import androidx.lifecycle.MutableLiveData
+import com.google.firebase.auth.FirebaseUser
+
 interface UserStore {
-    fun findAllUsers():List<UserModel>
-    fun createUser(student:UserModel)
-    fun updateUser(student:UserModel)
-    fun findUserModules(studentID: Long): List<ModuleModel>
-    fun updateUserModules(student: UserModel, modules:MutableList<ModuleModel>)
-    fun addUserModule(student: UserModel, module:ModuleModel)
+    fun findAllUsers(userList: MutableLiveData<List<UserModel>>)
+    fun createUser(firebaseUser: MutableLiveData<FirebaseUser>)
+    fun updateUser(email: String)
+    fun findUserModules(email: String): List<ModuleModel>
+    fun updateUserModules(email: String, modules:MutableList<ModuleModel>)
+    fun addUserModule(email: String, module:ModuleModel)
 }

@@ -1,36 +1,48 @@
 package ie.wit.classattendanceapp.ui.launch
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
-import ie.wit.classattendanceapp.databinding.FragmentLaunchBinding
+import ie.wit.classattendanceapp.databinding.CreateAccountBinding
+import ie.wit.classattendanceapp.databinding.LaunchBinding
+import ie.wit.classattendanceapp.databinding.LoginBinding
+import ie.wit.classattendanceapp.ui.createaccount.CreateAccount
+import ie.wit.classattendanceapp.ui.createaccount.CreateAccountViewModel
+import ie.wit.classattendanceapp.ui.login.Login
 
-class LaunchFragment: Fragment() {
-    private var _fragBinding: FragmentLaunchBinding? = null
-    private val fragBinding get() = _fragBinding!!
+class Launch: AppCompatActivity() {
+    private lateinit var launchViewModel : LaunchViewModel
+    private lateinit var launchBinding : LaunchBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
+        launchBinding = LaunchBinding.inflate(layoutInflater)
+        setContentView(launchBinding.root)
+
+
+        launchBinding.btnLogin.setOnClickListener {
+            val launcherIntent = Intent(this, Login::class.java)
+            startActivityForResult(launcherIntent, 0)
+
+        }
+
+        launchBinding.btnCreateAccount.setOnClickListener {
+            val launcherIntent = Intent(this, CreateAccount::class.java)
+            startActivityForResult(launcherIntent, 0)
+
+
+        }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        _fragBinding = FragmentLaunchBinding.inflate(inflater, container, false)
-        val root = fragBinding.root
-        // activity?.title = getString(R.string.action_donate)
 
-        setLoginButtonListener(fragBinding)
-        setCreateAccountButtonListener(fragBinding)
-
-        return root;
-    }
 
 //    companion object {
 //        @JvmStatic
@@ -54,18 +66,24 @@ class LaunchFragment: Fragment() {
 
  */
 
-    fun setLoginButtonListener(layout: FragmentLaunchBinding) {
-        layout.btnLogin.setOnClickListener {
-            val action = LaunchFragmentDirections.actionLaunchFragmentToLoginFragment()
-            findNavController().navigate(action)
+    fun setLoginButtonListener() {
+        launchBinding.btnLogin.setOnClickListener {
+            val launcherIntent = Intent(this, Login::class.java)
+
         }
     }
 
-    fun setCreateAccountButtonListener(layout: FragmentLaunchBinding) {
-        layout.btnCreateAccount.setOnClickListener {
-            val action = LaunchFragmentDirections.actionLaunchFragmentToCreateAccountFragment()
-            findNavController().navigate(action)
+    fun setCreateAccountButtonListener() {
+        launchBinding.btnCreateAccount.setOnClickListener {
+            val launcherIntent = Intent(this, CreateAccount::class.java)
+
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        Toast.makeText(this,"Click again to Close App...", Toast.LENGTH_LONG).show()
+        finish()
     }
 /*
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
