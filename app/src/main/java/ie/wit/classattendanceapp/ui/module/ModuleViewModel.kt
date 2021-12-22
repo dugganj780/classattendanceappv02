@@ -12,7 +12,7 @@ class ModuleViewModel : ViewModel() {
     val observableLectures: LiveData<List<LectureModel>>
         get() = lectures
 
-    fun getLectures(id: Long){
-        lectures.value = ModuleManager.findLectures(id)
+    fun getLectures(id: String){
+        //lectures.value = ModuleManager.findLectures(id)
     }
 }

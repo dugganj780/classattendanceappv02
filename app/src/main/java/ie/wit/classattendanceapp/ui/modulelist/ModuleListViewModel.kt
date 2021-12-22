@@ -3,6 +3,7 @@ package ie.wit.classattendanceapp.ui.modulelist
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import ie.wit.classattendanceapp.firebase.FirebaseDBManagerUsers
 import ie.wit.classattendanceapp.models.ModuleManager
 import ie.wit.classattendanceapp.models.ModuleModel
 import ie.wit.classattendanceapp.models.UserManager
@@ -14,14 +15,19 @@ class ModuleListViewModel : ViewModel() {
     private val moduleList = MutableLiveData<List<ModuleModel>>()
     private val student = MutableLiveData<UserModel>()
 
-    val observableModuleList: LiveData<List<ModuleModel>>
-        get() = moduleList
+   // var observableModuleList: LiveData<List<ModuleModel>>
+        //get() = moduleList
+        //set(value){moduleList.value = student.modules}
 
-    val observableStudent: LiveData<UserModel>
-        get() = student
+
 
     fun getUserModules(studentId: Long) {
-        moduleList.value = UserManager.findUserModules(studentId)
+       // moduleList.value = UserManager.findUserModules(studentId)
+    }
+
+
+    fun getModules(){
+
     }
 /*
     fun delete(id: String) {

@@ -1,4 +1,4 @@
-package ie.wit.donationx.firebase
+package ie.wit.classattendanceapp.firebase
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData

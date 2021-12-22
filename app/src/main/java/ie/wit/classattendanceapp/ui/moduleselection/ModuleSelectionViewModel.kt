@@ -3,9 +3,11 @@ package ie.wit.classattendanceapp.ui.moduleselection
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import ie.wit.classattendanceapp.firebase.FirebaseDBManagerModules
 import ie.wit.classattendanceapp.models.ModuleManager
 import ie.wit.classattendanceapp.models.ModuleModel
 import timber.log.Timber
+import java.lang.Exception
 
 class ModuleSelectionViewModel: ViewModel() {
     private val moduleList = MutableLiveData<List<ModuleModel>>()
@@ -19,11 +21,11 @@ class ModuleSelectionViewModel: ViewModel() {
 
     fun load() {
         try {
-            ModuleManager.findAll()
-            Timber.i("Retrofit Success : $moduleList.value")
+            FirebaseDBManagerModules.findAll(moduleList)
+            Timber.i("Report Load Success : ${moduleList.value.toString()}")
         }
         catch (e: Exception) {
-            Timber.i("Retrofit Error : $e.message")
+            Timber.i("Report Load Error : $e.message")
         }
     }
 }

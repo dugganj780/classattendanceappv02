@@ -3,12 +3,14 @@ package ie.wit.classattendanceapp.ui.moduleselection
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.FirebaseAuth
 import ie.wit.classattendanceapp.R
 import ie.wit.classattendanceapp.adapters.ModuleAdapter
 import ie.wit.classattendanceapp.adapters.ModuleSelectionAdapter
@@ -18,17 +20,21 @@ import ie.wit.classattendanceapp.databinding.FragmentModuleSelectionBinding
 import ie.wit.classattendanceapp.main.ClassAttendanceApp
 import ie.wit.classattendanceapp.models.ModuleModel
 import ie.wit.classattendanceapp.models.UserModel
+import ie.wit.classattendanceapp.ui.login.LoginViewModel
 import ie.wit.classattendanceapp.ui.modulelist.ModuleListFragmentDirections
 import ie.wit.classattendanceapp.ui.modulelist.ModuleListViewModel
+import timber.log.Timber
 
 class ModuleSelectionFragment: Fragment(), ModuleSelectionListener {
     lateinit var app: ClassAttendanceApp
     private var _fragBinding: FragmentModuleSelectionBinding? = null
     private val fragBinding get() = _fragBinding!!
     private lateinit var moduleSelectionViewModel: ModuleSelectionViewModel
+    val loginViewModel : LoginViewModel by activityViewModels()
     var student = UserModel()
     var module = ModuleModel()
     var modules:MutableList<ModuleModel> = mutableListOf(ModuleModel())
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +57,13 @@ class ModuleSelectionFragment: Fragment(), ModuleSelectionListener {
             }
 
         })
+
+        fragBinding.btnModuleSelection.setOnClickListener {
+            loginViewModel.updateUserModules(FirebaseAuth.getInstance().currentUser!!.uid, modules)
+            val action =
+                ModuleSelectionFragmentDirections.actionModuleSelectionFragmentToModuleListFragment()
+            findNavController().navigate(action)
+        }
         return root
     }
 
@@ -74,7 +87,7 @@ class ModuleSelectionFragment: Fragment(), ModuleSelectionListener {
     }
 
     override fun onModuleRemove(module: ModuleModel){
-
+        modules.remove(module)
     }
 
 
@@ -87,4 +100,12 @@ class ModuleSelectionFragment: Fragment(), ModuleSelectionListener {
         super.onDestroyView()
         _fragBinding = null
     }
+/*
+    override fun onModuleCheck(module: ModuleModel){
+        student.modules?.add(module)
+        .updateUser(student)
+        Timber.i("$student")
+    }
+   
+ */
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.createaccount.CreateAccount">
+    tools:context=".ui.login.FirstLogin">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -40,33 +40,46 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/email"
+                    android:id="@+id/first_name"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_margin="8dp"
                     android:autofillHints=""
-                    android:hint="@string/hint_email"
-                    android:inputType="textEmailAddress"
-                    android:maxLength="25"
-                    android:maxLines="1"
-                    android:padding="8dp"
-                    android:textColor="@color/uccBlue"
-                    android:textSize="14sp" />
-                <EditText
-                    android:id="@+id/password"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_margin="8dp"
-                    android:autofillHints=""
-                    android:hint="@string/hint_password"
+                    android:hint="@string/hint_firstName"
                     android:inputType="text"
                     android:maxLength="25"
                     android:maxLines="1"
                     android:padding="8dp"
                     android:textColor="@color/uccBlue"
                     android:textSize="14sp" />
+                <EditText
+                    android:id="@+id/surname"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_margin="8dp"
+                    android:autofillHints=""
+                    android:hint="@string/hint_surname"
+                    android:inputType="text"
+                    android:maxLength="25"
+                    android:maxLines="1"
+                    android:padding="8dp"
+                    android:textColor="@color/uccBlue"
+                    android:textSize="14sp" />
+                <EditText
+                    android:id="@+id/student_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_margin="8dp"
+                    android:autofillHints=""
+                    android:hint="@string/hint_studentId"
+                    android:inputType="number"
+                    android:maxLength="25"
+                    android:maxLines="1"
+                    android:padding="8dp"
+                    android:textColor="@color/uccBlue"
+                    android:textSize="14sp" />
                 <Button
-                    android:id="@+id/btnCreateAccount"
+                    android:id="@+id/btnUpdateInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
@@ -74,7 +87,7 @@
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp"
                     android:stateListAnimator="@null"
-                    android:text="@string/button_createAccount"
+                    android:text="@string/button_updateInfo"
                     android:textColor="@color/uccWhite"
                     android:textSize="16sp" />
             </LinearLayout>

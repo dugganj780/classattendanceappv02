@@ -13,9 +13,6 @@
         <action
             android:id="@+id/action_moduleListFragment_to_moduleFragment"
             app:destination="@id/moduleFragment" />
-        <argument
-            android:name="studentId"
-            app:argType="long" />
 
     </fragment>
 
@@ -50,7 +47,7 @@
             app:destination="@id/lectureFragment" />
         <argument
             android:name="id"
-            app:argType="long" />
+            app:argType="string" />
 
     </fragment>
     <fragment

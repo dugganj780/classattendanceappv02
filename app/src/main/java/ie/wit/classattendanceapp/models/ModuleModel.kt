@@ -1,8 +1,23 @@
 package ie.wit.classattendanceapp.models
 
 import android.os.Parcelable
+import com.google.firebase.database.Exclude
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class ModuleModel(var id: Long = 0, var moduleCode: String ="", var title: String="",
-                       var lectures: List<LectureModel> = mutableListOf(LectureModel(0,"","","",""))): Parcelable
+data class ModuleModel(var uid: String = "",
+                       var moduleCode: String ="",
+                       var title: String="",
+                       var lectures: List<LectureModel> = mutableListOf(LectureModel(0,"","","","")))
+    : Parcelable
+{
+    @Exclude
+    fun toMap(): Map<String, Any?> {
+        return mapOf(
+            "uid" to uid,
+            "moduleCode" to moduleCode,
+            "title" to title,
+            "lectures" to lectures
+        )
+    }
+}

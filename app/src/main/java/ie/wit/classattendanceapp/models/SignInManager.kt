@@ -16,7 +16,7 @@ class SignInManager: SignInStore {
     }
 
     override fun moduleSignIns(module: ModuleModel,lecture: LectureModel): MutableList<SignInModel> {
-        var foundModule: ModuleModel? = modules.find { p -> p.id == module.id }
+        var foundModule: ModuleModel? = modules.find { p -> p.uid == module.uid }
         var moduleAttendance = mutableListOf<SignInModel>()
         var moduleAttendanceByDay = mutableListOf<SignInModel>()
 

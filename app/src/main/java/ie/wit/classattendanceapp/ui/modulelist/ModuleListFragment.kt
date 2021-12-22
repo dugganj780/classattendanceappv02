@@ -19,12 +19,14 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.auth.FirebaseAuth
 import ie.wit.classattendanceapp.R
 import ie.wit.classattendanceapp.main.ClassAttendanceApp
 import ie.wit.classattendanceapp.adapters.ModuleAdapter
 import ie.wit.classattendanceapp.adapters.ModuleListener
 import ie.wit.classattendanceapp.databinding.FragmentModuleListBinding
 import ie.wit.classattendanceapp.models.ModuleModel
+import ie.wit.classattendanceapp.ui.login.LoginViewModel
 import ie.wit.classattendanceapp.models.UserModel
 import timber.log.Timber
 
@@ -34,8 +36,9 @@ class ModuleListFragment : Fragment(), ModuleListener {
     private var _fragBinding: FragmentModuleListBinding? = null
     private val fragBinding get() = _fragBinding!!
     private lateinit var moduleListViewModel: ModuleListViewModel
-    private val args by navArgs<ModuleListFragmentArgs>()
-    var student = UserModel()
+    val loginViewModel : LoginViewModel by activityViewModels()
+
+    //private val args by navArgs<ModuleListFragmentArgs>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,13 +54,13 @@ class ModuleListFragment : Fragment(), ModuleListener {
 
         fragBinding.recyclerView.layoutManager = LinearLayoutManager(activity)
         moduleListViewModel = ViewModelProvider(this).get(ModuleListViewModel::class.java)
-        moduleListViewModel.observableModuleList.observe(viewLifecycleOwner, Observer {
-                modules ->
-            modules?.let {
-                render(modules as ArrayList<ModuleModel>)
-                checkSwipeRefresh()
+        Timber.i("Student is ${loginViewModel.observableStudent}")
+        loginViewModel.observableStudent.observe(viewLifecycleOwner, Observer { student ->
+            student?.let {
+                Timber.i("Student modules: $student.modules")
+                render(student.modules as ArrayList<ModuleModel>)
+                // checkSwipeRefresh()
             }
-
         })
 
         setSwipeRefresh()
@@ -66,16 +69,18 @@ class ModuleListFragment : Fragment(), ModuleListener {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_main, menu)
-        return super.onCreateOptionsMenu(menu,inflater)
+        return super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return NavigationUI.onNavDestinationSelected(item,
-            requireView().findNavController()) || super.onOptionsItemSelected(item)
+        return NavigationUI.onNavDestinationSelected(
+            item,
+            requireView().findNavController()
+        ) || super.onOptionsItemSelected(item)
     }
 
     private fun render(moduleList: ArrayList<ModuleModel>) {
-        fragBinding.recyclerView.adapter = ModuleAdapter(moduleList,this)
+        fragBinding.recyclerView.adapter = ModuleAdapter(moduleList, this)
         if (moduleList.isEmpty()) {
             fragBinding.recyclerView.visibility = View.GONE
             fragBinding.modulesNotFound.visibility = View.VISIBLE
@@ -85,14 +90,15 @@ class ModuleListFragment : Fragment(), ModuleListener {
         }
     }
 
-    override fun onModuleClick(module: ModuleModel){
-        val action = ModuleListFragmentDirections.actionModuleListFragmentToModuleFragment(module.id)
+    override fun onModuleClick(module: ModuleModel) {
+        val action =
+            ModuleListFragmentDirections.actionModuleListFragmentToModuleFragment(module.uid)
         findNavController().navigate(action)
     }
 
     override fun onResume() {
         super.onResume()
-        moduleListViewModel.getUserModules(args.studentId)
+        loginViewModel.getStudent(FirebaseAuth.getInstance().currentUser!!.uid)
     }
 
     override fun onDestroyView() {
@@ -103,13 +109,13 @@ class ModuleListFragment : Fragment(), ModuleListener {
     fun setSwipeRefresh() {
         fragBinding.swiperefresh.setOnRefreshListener {
             fragBinding.swiperefresh.isRefreshing = true
-            moduleListViewModel.getUserModules(args.studentId)        }
-    }
+            //moduleListViewModel.getUserModules(args.studentId)        }
+        }
 
-    fun checkSwipeRefresh() {
-        if (fragBinding.swiperefresh.isRefreshing)
-            fragBinding.swiperefresh.isRefreshing = false
-    }
+        fun checkSwipeRefresh() {
+            if (fragBinding.swiperefresh.isRefreshing)
+                fragBinding.swiperefresh.isRefreshing = false
+        }
 /*
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         binding.recyclerView.adapter?.notifyDataSetChanged()
@@ -132,29 +138,6 @@ class ModuleListFragment : Fragment(), ModuleListener {
     }
 
  */
+    }
 }
-
-{
-    "rules": {
-    "users": {
-    "$uid:{
-    ".write": "auth.uid != null",
-    ".read": "auth.uid != null"
-}
-},
-    "modules": {
-    "$uid": {
-    ".write": "$uid === auth.uid",
-    ".read": "$uid === auth.uid"
-}
-},
-    "signIns": {
-    "$uid": {
-    ".write": "$uid === auth.uid",
-    ".read": "$uid === auth.uid"
-}
-},
-}
-}
-
 

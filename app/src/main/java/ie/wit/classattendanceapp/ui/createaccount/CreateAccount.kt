@@ -22,6 +22,8 @@ import ie.wit.classattendanceapp.models.UserModel
 import ie.wit.classattendanceapp.ui.login.LoginViewModel
 import timber.log.Timber
 import androidx.lifecycle.Observer
+import com.google.firebase.auth.FirebaseAuth
+import ie.wit.classattendanceapp.ui.login.Login
 
 
 class CreateAccount: AppCompatActivity() {
@@ -35,14 +37,11 @@ class CreateAccount: AppCompatActivity() {
         setContentView(createAccountBinding.root)
 
         createAccountBinding.btnCreateAccount.setOnClickListener {
-            student.firstName = createAccountBinding.firstName.text.toString()
-            student.surname = createAccountBinding.surname.text.toString()
-            student.email = createAccountBinding.email.text.toString()
-            student.studentID = createAccountBinding.studentId.text.toString().toLong()
-            student.password = createAccountBinding.password.text.toString()
-            UserManager.createUser(student)
+
             register(createAccountBinding.email.text.toString(),
                 createAccountBinding.password.text.toString())
+            val launcherIntent = Intent(this, Login::class.java)
+            startActivityForResult(launcherIntent, 0)
 
         }
 
@@ -52,12 +51,6 @@ class CreateAccount: AppCompatActivity() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
         createAccountViewModel = ViewModelProvider(this).get(CreateAccountViewModel::class.java)
-        createAccountViewModel.liveFirebaseUser.observe(this, Observer
-        { firebaseUser -> if (firebaseUser != null)
-            startActivity(Intent(this, Home::class.java)) })
-
-        createAccountViewModel.firebaseAuthManager.errorStatus.observe(this, Observer
-        { status -> checkStatus(status) })
 
     }
 
@@ -69,6 +62,8 @@ class CreateAccount: AppCompatActivity() {
 
         createAccountViewModel.register(email, password)
     }
+
+
 
     private fun checkStatus(error:Boolean) {
         if (error)

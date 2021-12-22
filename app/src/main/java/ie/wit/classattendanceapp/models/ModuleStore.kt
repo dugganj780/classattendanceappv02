@@ -1,10 +1,15 @@
 package ie.wit.classattendanceapp.models
 
+import androidx.lifecycle.MutableLiveData
+
 interface ModuleStore {
-    fun findAll(): List<ModuleModel>
-    fun create(module: ModuleModel)
+    fun findAll(moduleList: MutableLiveData<List<ModuleModel>>)
+    fun createModule(module: ModuleModel)
+    /*
     fun delete(module: ModuleModel)
     fun findOne(id: Long): ModuleModel?
     fun findLectures(id:Long): List<LectureModel>
     fun updateLecture(module: ModuleModel, lecture: LectureModel)
+
+     */
 }

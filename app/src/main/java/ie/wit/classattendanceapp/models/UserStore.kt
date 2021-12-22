@@ -4,10 +4,16 @@ import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseUser
 
 interface UserStore {
+    fun createUser(student: UserModel)
+    //fun findUserModules(userEmail: String, modules: List<ModuleModel>)
+    fun findById(uid: String, student: MutableLiveData<UserModel>)
+    fun updateUserModules(uid: String, modules:MutableList<ModuleModel>)
+
+
+    /*
     fun findAllUsers(userList: MutableLiveData<List<UserModel>>)
-    fun createUser(firebaseUser: MutableLiveData<FirebaseUser>)
-    fun updateUser(email: String)
-    fun findUserModules(email: String): List<ModuleModel>
-    fun updateUserModules(email: String, modules:MutableList<ModuleModel>)
+    fun updateUser(userEmail: String, student: UserModel)
     fun addUserModule(email: String, module:ModuleModel)
+
+     */
 }

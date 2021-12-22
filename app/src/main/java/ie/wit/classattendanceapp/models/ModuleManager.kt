@@ -1,4 +1,5 @@
 package ie.wit.classattendanceapp.models
+import androidx.lifecycle.MutableLiveData
 import java.util.*
 
 fun generateARandomId(): Long {
@@ -11,15 +12,15 @@ object ModuleManager : ModuleStore {
     val users = ArrayList<UserModel>()
 
 
-    override fun findAll(): List<ModuleModel> {
-        return modules
+    override fun findAll(moduleList: MutableLiveData<List<ModuleModel>>) {
+        //return modules
     }
 
-    override fun create(module: ModuleModel) {
-        module.id = generateARandomId()
+    override fun createModule(module: ModuleModel) {
+      //  module.uid = generateARandomId()
         modules.add(module)
     }
-
+/*
     override fun delete(module: ModuleModel) {
         modules.remove(module)
     }
@@ -55,6 +56,6 @@ object ModuleManager : ModuleStore {
         }
 
     }
-
+*/
 
 }

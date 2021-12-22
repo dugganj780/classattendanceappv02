@@ -17,6 +17,7 @@ import ie.wit.classattendanceapp.databinding.LoginBinding
 import ie.wit.classattendanceapp.ui.createaccount.CreateAccount
 import ie.wit.classattendanceapp.ui.createaccount.CreateAccountViewModel
 import ie.wit.classattendanceapp.ui.login.Login
+import timber.log.Timber
 
 class Launch: AppCompatActivity() {
     private lateinit var launchViewModel : LaunchViewModel
@@ -26,6 +27,7 @@ class Launch: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         launchBinding = LaunchBinding.inflate(layoutInflater)
         setContentView(launchBinding.root)
+        Timber.i("Launched")
 
 
         launchBinding.btnLogin.setOnClickListener {
