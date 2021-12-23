@@ -2,10 +2,12 @@ package ie.wit.classattendanceapp.models
 
 import android.os.Parcelable
 import com.google.firebase.database.Exclude
+import com.google.firebase.database.IgnoreExtraProperties
 import kotlinx.parcelize.Parcelize
 
+@IgnoreExtraProperties
 @Parcelize
-data class LectureModel(var id: Int =0,
+data class LectureModel(var id: String ="",
                         var startTime: String ="",
                         var endTime: String ="",
                         var day: String="",

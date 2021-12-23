@@ -3,16 +3,29 @@ package ie.wit.classattendanceapp.ui.module
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import ie.wit.classattendanceapp.firebase.FirebaseDBManagerModules
+import ie.wit.classattendanceapp.firebase.FirebaseDBManagerUsers
 import ie.wit.classattendanceapp.models.ModuleManager
 import ie.wit.classattendanceapp.models.LectureModel
+import ie.wit.classattendanceapp.models.ModuleModel
+import timber.log.Timber
+import java.lang.Exception
 
 class ModuleViewModel : ViewModel() {
-    private val lectures = MutableLiveData<List<LectureModel>>()
+    private val module = MutableLiveData<ModuleModel>()
 
-    val observableLectures: LiveData<List<LectureModel>>
-        get() = lectures
+    var observableModule: LiveData<ModuleModel>
+        get() = module
+        set(value){module.value = value.value}
 
-    fun getLectures(id: String){
-        //lectures.value = ModuleManager.findLectures(id)
-    }
+    fun getModule(uid: String){
+        Timber.i("$uid")
+        try {
+            FirebaseDBManagerModules.findModuleById(uid, module)
+            Timber.i("Detail getStudent() Success : ${
+                module.value.toString()}")
+        }
+        catch (e: Exception) {
+            Timber.i("Detail getStudent() Error : $e.message")
+        }    }
 }

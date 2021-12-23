@@ -22,10 +22,11 @@ object FirebaseDBManagerModules : ModuleStore {
             Timber.i("Firebase Error : Key Empty")
             return
         }
+        module.uid = key
         val moduleValues = module.toMap()
 
         val childAdd = HashMap<String, Any>()
-        childAdd["/modules/${module.uid}"] = moduleValues
+        childAdd["/modules/${key}"] = moduleValues
 
         moduleDatabase.updateChildren(childAdd)    }
 
@@ -54,12 +55,8 @@ object FirebaseDBManagerModules : ModuleStore {
 
     override fun findModuleById(uid: String, module: MutableLiveData<ModuleModel>){
         moduleDatabase.child("modules").child(uid).get().addOnSuccessListener {
+            Timber.i("module uid being searched is $uid")
             module.value = it.getValue(ModuleModel::class.java)
-            /*
-            if (student.value == null){
-                student.value = UserModel()
-            }
-             */
             Timber.i("firebase Got value ${it.value}")
         }.addOnFailureListener{
             Timber.e("firebase Error getting data $it")

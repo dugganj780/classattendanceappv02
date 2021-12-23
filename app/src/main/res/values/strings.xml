@@ -6,11 +6,11 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-
     <string name="hint_moduleCode">Module Code</string>
     <string name="hint_moduleTitle">Module Title</string>
     <string name="button_addModule">Add Module</string>
-    <string name="menu_addModule">Add</string>
+    <string name="menu_addModule">Add New Module</string>
+    <string name="menu_selectModule">Select Modules</string>
     <string name="menu_back">Back</string>
     <string name="button_signInPerson">In Attendance</string>
     <string name="button_signInLive">Watching Live Online</string>
@@ -18,6 +18,7 @@
     <string name="button_seeAttendance">Check Attendance</string>
     <string name="button_login">Login</string>
     <string name="button_createAccount">Create Account</string>
+    <string name="button_createModule">Create Module</string>
     <string name="button_moduleSelection">Confirm Selection</string>
     <string name="button_updateInfo">Submit Information</string>
     <string name="hint_studentId">Student Number</string>
@@ -25,6 +26,14 @@
     <string name="hint_password">Password</string>
     <string name="hint_firstName">First Name</string>
     <string name="hint_surname">Surname</string>
+    <string name="hint_lecture01StartTime">Lecture 01 Start Time</string>
+    <string name="hint_lecture01EndTime">Lecture 01 End Time</string>
+    <string name="hint_lecture01Day">Lecture 01 Day</string>
+    <string name="hint_lecture01Location">Lecture 01 Location</string>
+    <string name="hint_lecture02StartTime">Lecture 02 Start Time</string>
+    <string name="hint_lecture02EndTime">Lecture 02 End Time</string>
+    <string name="hint_lecture02Day">Lecture 02 Day</string>
+    <string name="hint_lecture02Location">Lecture 02 Location</string>
     <string name="hint_cancelMessage">Enter message to students</string>
     <string name="button_cancelLecture">Update Notification</string>
     <string name="data_missing">Data missing. Please check and try again.</string>
@@ -33,6 +42,7 @@
     <string name="menu_myAccount">My Account</string>
     <string name="menu_logout">Logout</string>
     <string name="modulesNotFound">You are not currently registered for any modules</string>
+    <string name="lecturesNotFound">There are currently no lectures assigned to this module</string>
     <string name="auth_failed">Authentication failed</string>
 
 

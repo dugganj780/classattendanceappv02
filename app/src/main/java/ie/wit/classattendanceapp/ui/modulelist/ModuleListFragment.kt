@@ -57,7 +57,7 @@ class ModuleListFragment : Fragment(), ModuleListener {
         Timber.i("Student is ${loginViewModel.observableStudent}")
         loginViewModel.observableStudent.observe(viewLifecycleOwner, Observer { student ->
             student?.let {
-                Timber.i("Student modules: $student.modules")
+                Timber.i("Student modules: ${student.modules}")
                 render(student.modules as ArrayList<ModuleModel>)
                 // checkSwipeRefresh()
             }

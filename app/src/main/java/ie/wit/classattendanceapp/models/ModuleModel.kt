@@ -2,13 +2,15 @@ package ie.wit.classattendanceapp.models
 
 import android.os.Parcelable
 import com.google.firebase.database.Exclude
+import com.google.firebase.database.IgnoreExtraProperties
 import kotlinx.parcelize.Parcelize
 
+@IgnoreExtraProperties
 @Parcelize
 data class ModuleModel(var uid: String = "",
                        var moduleCode: String ="",
                        var title: String="",
-                       var lectures: List<LectureModel> = mutableListOf<LectureModel>())
+                       var lectures: MutableList<LectureModel> = mutableListOf<LectureModel>())
     : Parcelable
 {
     @Exclude

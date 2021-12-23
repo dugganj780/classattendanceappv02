@@ -7,7 +7,7 @@
         <item
             android:id="@+id/moduleSelectionFragment"
             android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_addModule" />
+            android:title="@string/menu_selectModule" />
         <item
             android:id="@+id/moduleListFragment"
             android:icon="@drawable/ic_menu_gallery"
@@ -16,5 +16,9 @@
             android:id="@+id/accountSettingsFragment"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_myAccount" />
+        <item
+            android:id="@+id/moduleAddFragment"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_addModule" />
     </group>
 </menu>

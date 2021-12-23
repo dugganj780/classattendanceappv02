@@ -35,7 +35,7 @@
             app:destination="@id/moduleListFragment" />
         <argument
             android:name="lectureId"
-            app:argType="integer" />
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/moduleFragment"
@@ -46,8 +46,18 @@
             android:id="@+id/action_moduleFragment_to_lectureFragment"
             app:destination="@id/lectureFragment" />
         <argument
-            android:name="id"
+            android:name="uid"
             app:argType="string" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/moduleAddFragment"
+        android:name="ie.wit.classattendanceapp.ui.moduleadd.ModuleAddFragment"
+        android:label="Module Add"
+        tools:layout="@layout/fragment_module_add" >
+        <action
+            android:id="@+id/action_moduleAddFragment_to_moduleListFragment"
+            app:destination="@id/moduleListFragment" />
 
     </fragment>
     <fragment

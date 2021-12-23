@@ -21,10 +21,8 @@ class LectureAdapter(private var lectures: List<LectureModel>, private val liste
     }
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
-        val lecture = lectures.get(holder.adapterPosition)
-        if (lecture != null) {
-            holder.bind(lecture, listener)
-        }
+        val lecture = lectures[holder.adapterPosition]
+        holder.bind(lecture, listener)
     }
 
     override fun getItemCount(): Int = lectures.size

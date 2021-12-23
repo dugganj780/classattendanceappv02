@@ -15,16 +15,23 @@ import ie.wit.classattendanceapp.adapters.LectureAdapter
 import ie.wit.classattendanceapp.adapters.LectureListener
 import ie.wit.classattendanceapp.databinding.FragmentModuleBinding
 import ie.wit.classattendanceapp.databinding.FragmentSlideshowBinding
+import ie.wit.classattendanceapp.main.ClassAttendanceApp
 import ie.wit.classattendanceapp.models.LectureModel
 import ie.wit.classattendanceapp.models.ModuleModel
+import timber.log.Timber
 
 class ModuleFragment : Fragment(), LectureListener {
-
-    private lateinit var moduleViewModel: ModuleViewModel
+    lateinit var app: ClassAttendanceApp
     private val args by navArgs<ModuleFragmentArgs>()
     private var _fragBinding: FragmentModuleBinding? = null
     private val fragBinding get() = _fragBinding!!
+    private lateinit var moduleViewModel: ModuleViewModel
 
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,11 +41,13 @@ class ModuleFragment : Fragment(), LectureListener {
         _fragBinding = FragmentModuleBinding.inflate(inflater, container, false)
         val root = fragBinding.root
 
+        fragBinding.recyclerView.layoutManager = LinearLayoutManager(activity)
         moduleViewModel = ViewModelProvider(this).get(ModuleViewModel::class.java)
-        moduleViewModel.observableLectures.observe(viewLifecycleOwner, Observer {
-            lectures ->
-            lectures.let {
-                render(lectures as ArrayList<LectureModel>)
+        moduleViewModel.observableModule.observe(viewLifecycleOwner, Observer {
+            module ->
+            module.let {
+                Timber.i("lecture view is ${module.lectures}")
+                render(module.lectures as ArrayList<LectureModel>)
             }
         })
         return root
@@ -48,6 +57,14 @@ class ModuleFragment : Fragment(), LectureListener {
         // fragBinding.editAmount.setText(donation.amount.toString())
         // fragBinding.editPaymenttype.text = donation.paymentmethod
         fragBinding.recyclerView.adapter = LectureAdapter(lectures, this)
+        Timber.i("lectures in render method are $lectures")
+        if (lectures.isEmpty()) {
+            fragBinding.recyclerView.visibility = View.GONE
+            fragBinding.lecturesNotFound.visibility = View.VISIBLE
+        } else {
+            fragBinding.recyclerView.visibility = View.VISIBLE
+            fragBinding.lecturesNotFound.visibility = View.GONE
+        }
     }
 
     override fun onLectureClick(lecture: LectureModel) {
@@ -57,7 +74,8 @@ class ModuleFragment : Fragment(), LectureListener {
 
     override fun onResume() {
         super.onResume()
-        moduleViewModel.getLectures(args.id)
+        Timber.i("module uid is ${args.uid}")
+        moduleViewModel.getModule(args.uid)
     }
 
     override fun onDestroyView() {

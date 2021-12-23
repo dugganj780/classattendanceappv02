@@ -74,13 +74,14 @@ class FirstLogin: AppCompatActivity() {
             Timber.i("Observable Student $student")
             foundStudent = student
             Timber.i("Found Student is $foundStudent")
+            if (foundStudent.uid == FirebaseAuth.getInstance().currentUser!!.uid){
+                val launcherIntent = Intent(this, Home::class.java)
+                startActivityForResult(launcherIntent, 0)
+            }
         }
         })
 
-        if (foundStudent.uid == FirebaseAuth.getInstance().currentUser!!.uid){
-            val launcherIntent = Intent(this, Home::class.java)
-            startActivityForResult(launcherIntent, 0)
-        }
+
     }
 
     override fun onResume() {
