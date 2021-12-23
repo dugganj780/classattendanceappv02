@@ -16,7 +16,7 @@ object UserManager : UserStore{
     //override fun findUserModules(userEmail: String, modules:MutableList<ModuleModel>){}
     override fun findById(uid: String, student: MutableLiveData<UserModel>){}
 
-    override fun updateUserModules(uid:String, modules:MutableList<ModuleModel>) {
+    override fun updateUser(student: UserModel) {
         /*
         var foundUser: UserModel? = users.find { p -> p.studentID == student.studentID }
         if (foundUser != null) {

@@ -15,7 +15,7 @@ data class UserModel(var uid: String = "",
                      var surname: String = "",
                      var password: String ="",
                      var isAdmin:Boolean = false,
-                     var modules: MutableList<ModuleModel> = mutableListOf(ModuleModel()))
+                     var modules: MutableList<ModuleModel> = mutableListOf<ModuleModel>())
                      : Parcelable
 {
     @Exclude

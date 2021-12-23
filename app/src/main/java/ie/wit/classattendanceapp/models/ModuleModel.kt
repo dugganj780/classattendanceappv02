@@ -8,7 +8,7 @@ import kotlinx.parcelize.Parcelize
 data class ModuleModel(var uid: String = "",
                        var moduleCode: String ="",
                        var title: String="",
-                       var lectures: List<LectureModel> = mutableListOf(LectureModel(0,"","","","")))
+                       var lectures: List<LectureModel> = mutableListOf<LectureModel>())
     : Parcelable
 {
     @Exclude

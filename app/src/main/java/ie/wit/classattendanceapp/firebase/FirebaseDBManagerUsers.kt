@@ -2,8 +2,7 @@ package ie.wit.classattendanceapp.firebase
 
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import ie.wit.classattendanceapp.models.ModuleModel
 import ie.wit.classattendanceapp.models.UserModel
 import ie.wit.classattendanceapp.models.UserStore
@@ -44,14 +43,34 @@ object FirebaseDBManagerUsers : UserStore {
 
     }
 
-    override fun updateUserModules(uid: String, modules:MutableList<ModuleModel>){
-        val iterator = modules.listIterator()
-        for (module in iterator) {
-            Timber.i("$module")
-            val moduleValues = module.toMap()
-            val childUpdate: MutableMap<String, Any?> = HashMap()
-            childUpdate["users/$uid/modules/${module.uid}"] = moduleValues
+
+/*
+    override fun findUserModules(uid: String, student: MutableLiveData<UserModel>, modules:MutableList<ModuleModel>){
+        database.child("users").child(uid).get().addOnSuccessListener {
+            student.value = it.getValue(UserModel::class.java)
+            /*
+            if (student.value == null){
+                student.value = UserModel()
+            }
+             */
+            Timber.i("firebase Got value ${it.value}")
+        }.addOnFailureListener{
+            Timber.e("firebase Error getting data $it")
         }
+
+    }
+
+ */
+
+
+
+    override fun updateUser(student: UserModel){
+        val studentValues = student.toMap()
+
+        val childUpdate : MutableMap<String, Any?> = HashMap()
+        childUpdate["users/${student.uid}"] = studentValues
+
+        database.updateChildren(childUpdate)
     }
 
     /*

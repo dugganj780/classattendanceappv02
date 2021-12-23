@@ -49,11 +49,10 @@ class LoginViewModel (app: Application) : AndroidViewModel(app) {
         }
     }
 
-    fun updateUserModules(uid: String, modules: MutableList<ModuleModel>){
+    fun updateUser(student: UserModel){
         try {
-            //DonationManager.update(email, id, donation)
-            FirebaseDBManagerUsers.updateUserModules(uid, modules)
-            Timber.i("Detail update() Success : $modules")
+            FirebaseDBManagerUsers.updateUser(student)
+            Timber.i("Detail update() Success : $student")
         } catch (e: Exception) {
             Timber.i("Detail update() Error : $e.message")
         }

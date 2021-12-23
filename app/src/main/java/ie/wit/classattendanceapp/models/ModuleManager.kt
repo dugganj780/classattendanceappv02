@@ -20,6 +20,8 @@ object ModuleManager : ModuleStore {
       //  module.uid = generateARandomId()
         modules.add(module)
     }
+
+    override fun findModuleById(uid: String, module: MutableLiveData<ModuleModel>){}
 /*
     override fun delete(module: ModuleModel) {
         modules.remove(module)

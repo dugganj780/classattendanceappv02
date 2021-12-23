@@ -54,6 +54,9 @@ class FirstLogin: AppCompatActivity() {
             student.firstName = loginFirstBinding.firstName.text.toString()
             student.surname = loginFirstBinding.surname.text.toString()
             student.studentID = loginFirstBinding.studentId.text.toString().toLong()
+            if(student.studentID.equals(0)){
+                student.isAdmin = true
+        }
             addUser(student)
             val launcherIntent = Intent(this, Home::class.java)
             startActivityForResult(launcherIntent, 0)
@@ -66,18 +69,18 @@ class FirstLogin: AppCompatActivity() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
         //loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
-
-
-        loginViewModel.liveFirebaseUser.observe(this, Observer
-        { firebaseUser -> if (firebaseUser != null){
-            Timber.i("step 1 ${firebaseUser.uid}")
-            if (foundStudent.uid == FirebaseAuth.getInstance().currentUser!!.uid){
-                val launcherIntent = Intent(this, Home::class.java)
-                startActivityForResult(launcherIntent, 0)
-            }
+        loginViewModel.observableStudent.observe(this, Observer{
+                student -> if (student != null){
+            Timber.i("Observable Student $student")
+            foundStudent = student
+            Timber.i("Found Student is $foundStudent")
         }
         })
 
+        if (foundStudent.uid == FirebaseAuth.getInstance().currentUser!!.uid){
+            val launcherIntent = Intent(this, Home::class.java)
+            startActivityForResult(launcherIntent, 0)
+        }
     }
 
     override fun onResume() {

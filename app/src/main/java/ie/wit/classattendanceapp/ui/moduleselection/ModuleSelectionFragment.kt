@@ -59,10 +59,17 @@ class ModuleSelectionFragment: Fragment(), ModuleSelectionListener {
         })
 
         fragBinding.btnModuleSelection.setOnClickListener {
-            loginViewModel.updateUserModules(FirebaseAuth.getInstance().currentUser!!.uid, modules)
+            loginViewModel.observableStudent.observe(viewLifecycleOwner, Observer {
+                student ->
+                student.let {
+                    student.modules = modules
+                    loginViewModel.updateUser(student)
+                }
+            })
+
             val action =
-                ModuleSelectionFragmentDirections.actionModuleSelectionFragmentToModuleListFragment()
-            findNavController().navigate(action)
+               ModuleSelectionFragmentDirections.actionModuleSelectionFragmentToModuleListFragment()
+           findNavController().navigate(action)
         }
         return root
     }

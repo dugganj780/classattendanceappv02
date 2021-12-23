@@ -52,6 +52,21 @@ object FirebaseDBManagerModules : ModuleStore {
             })
     }
 
+    override fun findModuleById(uid: String, module: MutableLiveData<ModuleModel>){
+        moduleDatabase.child("modules").child(uid).get().addOnSuccessListener {
+            module.value = it.getValue(ModuleModel::class.java)
+            /*
+            if (student.value == null){
+                student.value = UserModel()
+            }
+             */
+            Timber.i("firebase Got value ${it.value}")
+        }.addOnFailureListener{
+            Timber.e("firebase Error getting data $it")
+        }
+
+    }
+
     /*
    override fun findById(uid: String, student: MutableLiveData<UserModel>){
        database.child("users").child(uid).get().addOnSuccessListener {
