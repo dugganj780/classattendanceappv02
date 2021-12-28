@@ -27,5 +27,6 @@ class ModuleViewModel : ViewModel() {
         }
         catch (e: Exception) {
             Timber.i("Detail getStudent() Error : $e.message")
-        }    }
+        }
+    }
 }

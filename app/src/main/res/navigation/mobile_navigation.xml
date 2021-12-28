@@ -31,8 +31,8 @@
         android:label="Lecture"
         tools:layout="@layout/fragment_lecture" >
         <action
-            android:id="@+id/action_lectureFragment_to_moduleListFragment"
-            app:destination="@id/moduleListFragment" />
+            android:id="@+id/action_lectureFragment_to_attendanceFragment"
+            app:destination="@id/attendanceFragment" />
         <argument
             android:name="lectureId"
             app:argType="string" />
@@ -68,5 +68,14 @@
         android:name="ie.wit.classattendanceapp.ui.lecture.LectureFragment"
         android:label="Lecture"
         tools:layout="@layout/fragment_lecture" >
+    </fragment>
+    <fragment
+        android:id="@+id/attendanceFragment"
+        android:name="ie.wit.classattendanceapp.ui.attendance.AttendanceFragment"
+        android:label="Attendance"
+        tools:layout="@layout/fragment_attendance" >
+        <argument
+            android:name="moduleId"
+            app:argType="string" />
     </fragment>
 </navigation>

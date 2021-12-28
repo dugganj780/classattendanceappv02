@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.firebase.auth.FirebaseAuth
 import ie.wit.classattendanceapp.databinding.FragmentLectureBinding
@@ -17,6 +18,7 @@ import ie.wit.classattendanceapp.models.ModuleModel
 import ie.wit.classattendanceapp.models.SignInModel
 import ie.wit.classattendanceapp.models.UserModel
 import ie.wit.classattendanceapp.ui.module.ModuleViewModel
+import ie.wit.classattendanceapp.ui.modulelist.ModuleListFragmentDirections
 import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*
@@ -44,6 +46,14 @@ class LectureFragment : Fragment() {
             student?.let {
                 Timber.i("Student modules: ${student.modules}")
                 currentStudent = student
+                Timber.i("CurrentStudent is $currentStudent")
+
+                if (currentStudent.Admin){
+                    fragBinding.btnSeeAttendance.visibility = View.VISIBLE
+                }
+                else{
+                    fragBinding.btnSeeAttendance.visibility = View.GONE
+                }
                 // checkSwipeRefresh()
             }
         })
@@ -127,6 +137,13 @@ class LectureFragment : Fragment() {
             Timber.i("SignIn created: $signIn")
             addSignIn(signIn)
         }
+
+        fragBinding.btnSeeAttendance.setOnClickListener {
+            val action =
+                LectureFragmentDirections.actionLectureFragmentToAttendanceFragment(args.moduleId)
+            findNavController().navigate(action)
+        }
+
         return root
         }
 

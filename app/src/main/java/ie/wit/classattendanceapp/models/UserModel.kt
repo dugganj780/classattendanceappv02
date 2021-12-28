@@ -14,7 +14,7 @@ data class UserModel(var uid: String = "",
                      var firstName: String = "",
                      var surname: String = "",
                      var password: String ="",
-                     var isAdmin:Boolean = false,
+                     var Admin:Boolean = false,
                      var modules: MutableList<ModuleModel> = mutableListOf<ModuleModel>())
                      : Parcelable
 {
@@ -28,7 +28,7 @@ data class UserModel(var uid: String = "",
             "firstName" to firstName,
             "surname" to surname,
             "password" to password,
-            "isAdmin" to isAdmin,
+            "Admin" to Admin,
             "modules" to modules
         )
     }

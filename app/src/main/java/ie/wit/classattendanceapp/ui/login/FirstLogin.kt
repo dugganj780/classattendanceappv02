@@ -55,7 +55,7 @@ class FirstLogin: AppCompatActivity() {
             student.surname = loginFirstBinding.surname.text.toString()
             student.studentID = loginFirstBinding.studentId.text.toString().toLong()
             if(student.studentID.equals(0)){
-                student.isAdmin = true
+                student.Admin = true
         }
             addUser(student)
             val launcherIntent = Intent(this, Home::class.java)
