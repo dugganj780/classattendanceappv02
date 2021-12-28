@@ -10,9 +10,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import ie.wit.classattendanceapp.databinding.FragmentGalleryBinding
 
-class GalleryFragment : Fragment() {
+class AttendanceFragment : Fragment() {
 
-    private lateinit var galleryViewModel: GalleryViewModel
+    private lateinit var galleryViewModel: AttendanceViewModel
     private var _binding: FragmentGalleryBinding? = null
 
     // This property is only valid between onCreateView and
@@ -25,7 +25,7 @@ class GalleryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         galleryViewModel =
-            ViewModelProvider(this).get(GalleryViewModel::class.java)
+            ViewModelProvider(this).get(AttendanceViewModel::class.java)
 
         _binding = FragmentGalleryBinding.inflate(inflater, container, false)
         val root: View = binding.root

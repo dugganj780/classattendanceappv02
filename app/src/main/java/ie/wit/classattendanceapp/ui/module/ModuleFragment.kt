@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ie.wit.classattendanceapp.adapters.LectureAdapter
 import ie.wit.classattendanceapp.adapters.LectureListener
 import ie.wit.classattendanceapp.databinding.FragmentModuleBinding
-import ie.wit.classattendanceapp.databinding.FragmentSlideshowBinding
 import ie.wit.classattendanceapp.main.ClassAttendanceApp
 import ie.wit.classattendanceapp.models.LectureModel
 import ie.wit.classattendanceapp.models.ModuleModel
@@ -26,6 +25,7 @@ class ModuleFragment : Fragment(), LectureListener {
     private var _fragBinding: FragmentModuleBinding? = null
     private val fragBinding get() = _fragBinding!!
     private lateinit var moduleViewModel: ModuleViewModel
+    var currentModule = ModuleModel()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +47,7 @@ class ModuleFragment : Fragment(), LectureListener {
             module ->
             module.let {
                 Timber.i("lecture view is ${module.lectures}")
+                currentModule = module
                 render(module.lectures as ArrayList<LectureModel>)
             }
         })
@@ -68,7 +69,7 @@ class ModuleFragment : Fragment(), LectureListener {
     }
 
     override fun onLectureClick(lecture: LectureModel) {
-        val action = ModuleFragmentDirections.actionModuleFragmentToLectureFragment(lecture.id)
+        val action = ModuleFragmentDirections.actionModuleFragmentToLectureFragment(lecture.id, currentModule.uid)
         findNavController().navigate(action)
     }
 

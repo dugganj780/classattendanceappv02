@@ -1,5 +1,6 @@
 package ie.wit.classattendanceapp.models
 
+import androidx.lifecycle.MutableLiveData
 import timber.log.Timber
 import java.util.*
 
@@ -7,15 +8,17 @@ class SignInManager: SignInStore {
     var modules = mutableListOf<ModuleModel>()
     var attendance = mutableListOf<SignInModel>()
 
-    override fun findAll(): MutableList<SignInModel> {
-        return attendance
+    override fun findAll(signIns: MutableLiveData<List<SignInModel>>) {
     }
 
-    override fun create(signIn: SignInModel) {
+    override fun createSignIn(signIn: SignInModel) {
         attendance.add(signIn)
     }
 
-    override fun moduleSignIns(module: ModuleModel,lecture: LectureModel): MutableList<SignInModel> {
+    override fun findSignInById(uid: String, signIn: MutableLiveData<SignInModel>){}
+
+    override fun moduleSignIns(moduleId: String,signIns: MutableLiveData<List<SignInModel>>) {
+        /*
         var foundModule: ModuleModel? = modules.find { p -> p.uid == module.uid }
         var moduleAttendance = mutableListOf<SignInModel>()
         var moduleAttendanceByDay = mutableListOf<SignInModel>()
@@ -42,5 +45,8 @@ class SignInManager: SignInStore {
         }
         Timber.i("$moduleAttendance")
         return moduleAttendanceByDay
+
+         */
     }
 }
+
