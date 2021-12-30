@@ -6,8 +6,11 @@ import androidx.recyclerview.widget.RecyclerView
 import ie.wit.classattendanceapp.databinding.CardSignInBinding
 import ie.wit.classattendanceapp.models.SignInModel
 
+interface SignInListener{
+    fun onSignInClick(signIn: SignInModel)
+}
 
-class SignInAdapter(private var attendance: List<SignInModel>) :
+class SignInAdapter(private var attendance: List<SignInModel>, private val listener: SignInListener) :
     RecyclerView.Adapter<SignInAdapter.MainHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
@@ -18,10 +21,9 @@ class SignInAdapter(private var attendance: List<SignInModel>) :
     }
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
-        val signIn = attendance.get(holder.adapterPosition)
-        if (signIn != null) {
-            holder.bind(signIn)
-        }
+        val signIn = attendance[holder.adapterPosition]
+        holder.bind(signIn,listener)
+
     }
 
     override fun getItemCount(): Int = attendance.size
@@ -31,7 +33,7 @@ class SignInAdapter(private var attendance: List<SignInModel>) :
 
         var status:String = ""
 
-        fun bind(signIn: SignInModel) {
+        fun bind(signIn: SignInModel, listener: SignInListener) {
             if (signIn.inPerson){
                 status="In Person"
             }
@@ -51,6 +53,7 @@ class SignInAdapter(private var attendance: List<SignInModel>) :
             binding.startTime.text = signIn.startTime
             binding.signInTime.text = signIn.signTime
             binding.status.text = status
+            binding.root.setOnClickListener{listener.onSignInClick(signIn)}
         }
     }
 

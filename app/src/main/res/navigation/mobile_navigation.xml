@@ -64,18 +64,24 @@
 
     </fragment>
     <fragment
-        android:id="@+id/signInFragment"
-        android:name="ie.wit.classattendanceapp.ui.lecture.LectureFragment"
-        android:label="Lecture"
-        tools:layout="@layout/fragment_lecture" >
-    </fragment>
-    <fragment
         android:id="@+id/attendanceFragment"
         android:name="ie.wit.classattendanceapp.ui.attendance.AttendanceFragment"
         android:label="Attendance"
         tools:layout="@layout/fragment_attendance" >
+        <action
+            android:id="@+id/action_attendanceFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
         <argument
             android:name="moduleId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="ie.wit.classattendanceapp.ui.signin.SignInFragment"
+        android:label="Attendance"
+        tools:layout="@layout/fragment_sign_in" >
+        <argument
+            android:name="signInId"
             app:argType="string" />
     </fragment>
 </navigation>

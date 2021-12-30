@@ -21,13 +21,16 @@ import ie.wit.classattendanceapp.databinding.FragmentModuleListBinding
 import ie.wit.classattendanceapp.main.ClassAttendanceApp
 import ie.wit.classattendanceapp.models.ModuleModel
 import ie.wit.classattendanceapp.adapters.SignInAdapter
+import ie.wit.classattendanceapp.adapters.SignInListener
+import ie.wit.classattendanceapp.models.LectureModel
 import ie.wit.classattendanceapp.models.SignInModel
 import ie.wit.classattendanceapp.ui.login.LoginViewModel
+import ie.wit.classattendanceapp.ui.module.ModuleFragmentDirections
 import ie.wit.classattendanceapp.ui.modulelist.ModuleListFragmentDirections
 import ie.wit.classattendanceapp.ui.modulelist.ModuleListViewModel
 import timber.log.Timber
 
-class AttendanceFragment : Fragment() {
+class AttendanceFragment : Fragment(), SignInListener {
     lateinit var app: ClassAttendanceApp
     private var _fragBinding: FragmentAttendanceBinding? = null
     private val fragBinding get() = _fragBinding!!
@@ -74,12 +77,17 @@ class AttendanceFragment : Fragment() {
     }
 
     private fun render(moduleSignInList: ArrayList<SignInModel>) {
-        fragBinding.recyclerView.adapter = SignInAdapter(moduleSignInList)
+        fragBinding.recyclerView.adapter = SignInAdapter(moduleSignInList,this)
         if (moduleSignInList.isEmpty()) {
             fragBinding.recyclerView.visibility = View.GONE
         } else {
             fragBinding.recyclerView.visibility = View.VISIBLE
         }
+    }
+
+    override fun onSignInClick(signIn: SignInModel) {
+        val action = AttendanceFragmentDirections.actionAttendanceFragmentToSignInFragment(signIn.uid)
+        findNavController().navigate(action)
     }
 
     override fun onStart() {

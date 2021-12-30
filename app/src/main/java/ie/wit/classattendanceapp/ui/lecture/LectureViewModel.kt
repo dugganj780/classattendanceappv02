@@ -19,6 +19,7 @@ class LectureViewModel : ViewModel() {
     private val student = MutableLiveData<UserModel>()
 
 
+
     var observableModule: LiveData<ModuleModel>
         get() = module
         set(value){module.value = value.value}
@@ -71,4 +72,5 @@ class LectureViewModel : ViewModel() {
     fun addSignIn(signIn: SignInModel){
         FirebaseDBManagerSignIns.createSignIn(signIn)
     }
+
 }
