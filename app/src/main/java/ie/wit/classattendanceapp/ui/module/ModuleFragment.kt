@@ -51,6 +51,7 @@ class ModuleFragment : Fragment(), LectureListener {
                 render(module.lectures as ArrayList<LectureModel>)
             }
         })
+        Timber.i("Current Module In is $currentModule")
         return root
     }
 

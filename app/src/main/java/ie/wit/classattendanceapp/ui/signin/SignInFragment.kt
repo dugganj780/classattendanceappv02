@@ -11,7 +11,10 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import ie.wit.classattendanceapp.databinding.FragmentModuleBinding
 import ie.wit.classattendanceapp.databinding.FragmentSignInBinding
 import ie.wit.classattendanceapp.main.ClassAttendanceApp
@@ -25,7 +28,7 @@ import timber.log.Timber
 class SignInFragment: Fragment() {
     lateinit var app: ClassAttendanceApp
     lateinit var map: GoogleMap
-    private val args by navArgs<ModuleFragmentArgs>()
+    private val args by navArgs<SignInFragmentArgs>()
     private var _fragBinding: FragmentSignInBinding? = null
     private val fragBinding get() = _fragBinding!!
     private lateinit var signInViewModel: SignInViewModel
@@ -44,6 +47,7 @@ class SignInFragment: Fragment() {
     ): View? {
         _fragBinding = FragmentSignInBinding.inflate(inflater, container, false)
         val root = fragBinding.root
+        fragBinding.mapView.onCreate(savedInstanceState)
 
 
         signInViewModel = ViewModelProvider(this).get(SignInViewModel::class.java)
@@ -52,15 +56,22 @@ class SignInFragment: Fragment() {
             signIn.let {
                 Timber.i("Sign In is $signIn")
                 currentSignIn = signIn
+                render(signIn)
+
             }
         })
 
-        fragBinding.mapView.onCreate(savedInstanceState)
+        Timber.i("Current Sign In is $currentSignIn")
+
+        return root
+    }
+
+    private fun render(signIn:SignInModel){
         fragBinding.mapView.getMapAsync {
             map = it
-            signInViewModel.doConfigureMap(map, currentSignIn)
+            Timber.i("Configure map lat in getMapAsync is ${currentSignIn.lat}")
+            doConfigureMap(map, signIn)
         }
-        return root
     }
 
     override fun onDestroy() {
@@ -80,11 +91,38 @@ class SignInFragment: Fragment() {
 
     override fun onResume() {
         super.onResume()
+        signInViewModel.getSignIn(args.signInId)
         fragBinding.mapView.onResume()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        signInViewModel.getSignIn(args.signInId)
+        //fragBinding.mapView.onStart()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         fragBinding.mapView.onSaveInstanceState(outState)
+    }
+
+    fun doConfigureMap(m: GoogleMap, signIn: SignInModel) {
+        map = m
+        Timber.i("Configure map lat is ${signIn.lat}")
+        locationUpdate(signIn)
+    }
+
+    fun locationUpdate(signIn: SignInModel) {
+        //currentSignIn.lat = lat
+        //currentSignIn.lng = lng
+        signIn.zoom = 15f
+        map?.clear()
+        map?.uiSettings?.setZoomControlsEnabled(true)
+        val options = MarkerOptions().title(signIn.surname + ", " + signIn.firstName).position(
+            LatLng(signIn.lat, signIn.lng)
+        )
+        map?.addMarker(options)
+        map?.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(signIn.lat, signIn.lng), signIn.zoom))
+        //view?.showPlacemark(signIn)
     }
 }

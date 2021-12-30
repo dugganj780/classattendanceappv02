@@ -39,11 +39,6 @@ class SignInViewModel: ViewModel() {
         }
     }
 
-    fun doConfigureMap(m: GoogleMap, signIn: SignInModel) {
-        map = m
-        locationUpdate(signIn, signIn.lat, signIn.lng)
-    }
-
     fun locationUpdate(signIn: SignInModel, lat: Double, lng: Double) {
         signIn.lat = lat
         signIn.lng = lng
