@@ -33,7 +33,7 @@ class ModuleSelectionFragment: Fragment(), ModuleSelectionListener {
     val loginViewModel : LoginViewModel by activityViewModels()
     var student = UserModel()
     var module = ModuleModel()
-    var modules:MutableList<ModuleModel> = mutableListOf(ModuleModel())
+    var modules:MutableList<ModuleModel> = mutableListOf<ModuleModel>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
