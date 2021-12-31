@@ -80,8 +80,6 @@ class FirstLogin: AppCompatActivity() {
             }
         }
         })
-
-
     }
 
     override fun onResume() {

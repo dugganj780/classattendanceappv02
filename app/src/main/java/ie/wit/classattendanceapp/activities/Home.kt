@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseUser
 import ie.wit.classattendanceapp.databinding.HomeBinding
 import ie.wit.classattendanceapp.databinding.NavHeaderMainBinding
 import ie.wit.classattendanceapp.R
+import ie.wit.classattendanceapp.ui.launch.Launch
 import ie.wit.classattendanceapp.ui.login.Login
 import ie.wit.classattendanceapp.ui.login.LoginViewModel
 import timber.log.Timber
@@ -80,6 +81,13 @@ class Home : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    fun logOut(item: MenuItem) {
+        loginViewModel.logOut()
+        val intent = Intent(this, Launch::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
     }
 
 }

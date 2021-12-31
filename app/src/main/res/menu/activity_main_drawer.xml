@@ -21,4 +21,13 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_addModule" />
     </group>
+    <item android:title="Access Control">
+        <menu>
+            <item
+                android:id="@+id/logout"
+                android:icon="@android:drawable/ic_menu_revert"
+                android:onClick="logOut"
+                android:title="@string/menu_logout" />
+        </menu>
+    </item>
 </menu>
