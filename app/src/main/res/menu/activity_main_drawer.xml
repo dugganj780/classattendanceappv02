@@ -6,19 +6,19 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/moduleSelectionFragment"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_select_modules"
             android:title="@string/menu_selectModule" />
         <item
             android:id="@+id/moduleListFragment"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_allModules" />
+            android:icon="@drawable/ic_my_modules"
+            android:title="@string/menu_myModules" />
         <item
             android:id="@+id/accountSettingsFragment"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_user"
             android:title="@string/menu_myAccount" />
         <item
             android:id="@+id/moduleAddFragment"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_add_new_module"
             android:title="@string/menu_addModule" />
     </group>
     <item android:title="Access Control">
