@@ -64,6 +64,15 @@ object FirebaseDBManagerModules : ModuleStore {
 
     }
 
+    override fun updateModule(module: ModuleModel){
+        val moduleValues = module.toMap()
+
+        val childUpdate : MutableMap<String, Any?> = HashMap()
+        childUpdate["modules/${module.uid}"] = moduleValues
+
+        database.updateChildren(childUpdate)
+    }
+
     /*
    override fun findById(uid: String, student: MutableLiveData<UserModel>){
        database.child("users").child(uid).get().addOnSuccessListener {

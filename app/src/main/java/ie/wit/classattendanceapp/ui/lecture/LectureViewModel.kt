@@ -46,6 +46,10 @@ class LectureViewModel : ViewModel() {
         }
     }
 
+    fun updateModule(module: ModuleModel){
+        FirebaseDBManagerModules.updateModule(module)
+    }
+
     fun getStudent(uid:String) {
         Timber.i("$uid")
         try {

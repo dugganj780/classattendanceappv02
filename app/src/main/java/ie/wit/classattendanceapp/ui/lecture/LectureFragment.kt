@@ -100,10 +100,20 @@ class LectureFragment : Fragment() {
                 Timber.i("CurrentStudent is $currentStudent")
 
                 if (currentStudent.Admin){
+                    fragBinding.btnSignInRecording.visibility = View.GONE
+                    fragBinding.btnSignInPerson.visibility = View.GONE
+                    fragBinding.btnSignInLive.visibility = View.GONE
                     fragBinding.btnSeeAttendance.visibility = View.VISIBLE
+                    fragBinding.btnCancelLecture.visibility = View.VISIBLE
+                    fragBinding.cancelMessage.visibility = View.VISIBLE
                 }
                 else{
+                    fragBinding.btnSignInRecording.visibility = View.VISIBLE
+                    fragBinding.btnSignInPerson.visibility = View.VISIBLE
+                    fragBinding.btnSignInLive.visibility = View.VISIBLE
                     fragBinding.btnSeeAttendance.visibility = View.GONE
+                    fragBinding.btnCancelLecture.visibility = View.GONE
+                    fragBinding.cancelMessage.visibility = View.GONE
                 }
                 // checkSwipeRefresh()
             }
@@ -206,6 +216,15 @@ class LectureFragment : Fragment() {
             findNavController().navigate(action)
         }
 
+        fragBinding.btnCancelLecture.setOnClickListener {
+            val message = fragBinding.cancelMessage.text.toString()
+
+            currentLecture.cancelMessage = message
+
+            updateLecture(currentLecture, currentModule)
+
+        }
+
         return root
         }
 
@@ -269,6 +288,18 @@ class LectureFragment : Fragment() {
             signInViewModel.locationUpdate(currentSignIn, it.latitude, it.longitude)
             Timber.i("Latitude: ${it.latitude}")
         }
+    }
+
+    private fun updateLecture(lecture: LectureModel, module: ModuleModel){
+        val iterator = module.lectures.listIterator()
+
+        for (item in iterator){
+            if (item.id == lecture.id){
+                item == lecture
+            }
+        }
+
+        lectureViewModel.updateModule(module)
     }
 
 

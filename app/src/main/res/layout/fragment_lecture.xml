@@ -97,6 +97,31 @@
                 android:text="@string/button_seeAttendance"
                 android:textColor="@color/uccWhite"
                 android:textSize="16sp" />
+            <EditText
+                android:id="@+id/cancel_message"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_margin="8dp"
+                android:autofillHints=""
+                android:hint="@string/hint_cancelMessage"
+                android:inputType="text"
+                android:maxLength="25"
+                android:maxLines="1"
+                android:padding="8dp"
+                android:textColor="@color/uccBlue"
+                android:textSize="14sp" />
+            <Button
+                android:id="@+id/btnCancelLecture"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@color/uccBlue"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:stateListAnimator="@null"
+                android:text="@string/button_cancelLecture"
+                android:textColor="@color/uccWhite"
+                android:textSize="16sp" />
         </LinearLayout>
     </ScrollView>
 
