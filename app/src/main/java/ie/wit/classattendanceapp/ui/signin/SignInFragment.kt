@@ -72,6 +72,25 @@ class SignInFragment: Fragment() {
             Timber.i("Configure map lat in getMapAsync is ${currentSignIn.lat}")
             doConfigureMap(map, signIn)
         }
+        val name:String = signIn.firstName+" "+signIn.surname
+        var status:String =""
+        if (signIn.inPerson){
+            status="In Person"
+        }
+
+        if(signIn.live){
+            status = "Live Online"
+        }
+
+        if (signIn.recording){
+            status = "Recording"
+        }
+        fragBinding.lectureDay.text=signIn.day
+        fragBinding.startTime.text=signIn.startTime
+        fragBinding.signedIn.text=signIn.signTime
+        fragBinding.module.text=signIn.moduleCode
+        fragBinding.name.text=name
+        fragBinding.viewMethod.text=status
     }
 
     override fun onDestroy() {

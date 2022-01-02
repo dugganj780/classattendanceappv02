@@ -31,7 +31,7 @@
             android:id="@+id/removeModule"
             android:layout_width="wrap_content"
             android:layout_height="70dp"
-            android:layout_marginEnd="25dp"
+            android:layout_marginEnd="15dp"
             android:layout_toStartOf="@+id/addModule"
             android:text="Remove" />
 

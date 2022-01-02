@@ -18,6 +18,7 @@ interface ModuleSelectionListener {
     fun onModuleAdd(module: ModuleModel)
     fun onModuleRemove(module: ModuleModel)
 
+
 }
 
 class ModuleSelectionAdapter constructor(private var modules: List<ModuleModel>, private val listener: ModuleSelectionListener) :

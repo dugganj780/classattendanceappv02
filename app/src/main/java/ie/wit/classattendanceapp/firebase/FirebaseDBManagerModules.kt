@@ -73,6 +73,14 @@ object FirebaseDBManagerModules : ModuleStore {
         database.updateChildren(childUpdate)
     }
 
+    override fun deleteModule(moduleId: String) {
+
+        val childDelete : MutableMap<String, Any?> = HashMap()
+        childDelete["/modules/$moduleId"] = null
+
+        database.updateChildren(childDelete)
+    }
+
     /*
    override fun findById(uid: String, student: MutableLiveData<UserModel>){
        database.child("users").child(uid).get().addOnSuccessListener {

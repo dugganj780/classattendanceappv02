@@ -24,6 +24,8 @@ object ModuleManager : ModuleStore {
     override fun findModuleById(uid: String, module: MutableLiveData<ModuleModel>){}
 
     override fun updateModule(module: ModuleModel){}
+
+    override fun deleteModule(moduleId: String){}
 /*
     override fun delete(module: ModuleModel) {
         modules.remove(module)

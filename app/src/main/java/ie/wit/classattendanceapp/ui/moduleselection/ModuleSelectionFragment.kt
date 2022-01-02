@@ -31,7 +31,7 @@ class ModuleSelectionFragment: Fragment(), ModuleSelectionListener {
     private val fragBinding get() = _fragBinding!!
     private lateinit var moduleSelectionViewModel: ModuleSelectionViewModel
     val loginViewModel : LoginViewModel by activityViewModels()
-    var student = UserModel()
+    var currentStudent = UserModel()
     var module = ModuleModel()
     var modules:MutableList<ModuleModel> = mutableListOf<ModuleModel>()
 
@@ -58,6 +58,8 @@ class ModuleSelectionFragment: Fragment(), ModuleSelectionListener {
 
         })
 
+
+
         fragBinding.btnModuleSelection.setOnClickListener {
             loginViewModel.observableStudent.observe(viewLifecycleOwner, Observer {
                 student ->
@@ -71,6 +73,7 @@ class ModuleSelectionFragment: Fragment(), ModuleSelectionListener {
                ModuleSelectionFragmentDirections.actionModuleSelectionFragmentToModuleListFragment()
            findNavController().navigate(action)
         }
+
         return root
     }
 
@@ -96,6 +99,8 @@ class ModuleSelectionFragment: Fragment(), ModuleSelectionListener {
     override fun onModuleRemove(module: ModuleModel){
         modules.remove(module)
     }
+
+
 
 
     override fun onResume() {

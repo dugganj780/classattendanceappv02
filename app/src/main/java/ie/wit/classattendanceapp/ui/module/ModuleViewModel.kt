@@ -29,4 +29,14 @@ class ModuleViewModel : ViewModel() {
             Timber.i("Detail getStudent() Error : $e.message")
         }
     }
+
+    fun deleteModule(moduleId: String){
+        try {
+            FirebaseDBManagerModules.deleteModule(moduleId)
+            Timber.i("Module Deleted")
+        }
+        catch (e: Exception) {
+            Timber.i("Could not delete")
+        }
+    }
 }

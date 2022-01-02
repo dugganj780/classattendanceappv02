@@ -52,6 +52,7 @@ class ModuleFragment : Fragment(), LectureListener {
             }
         })
         Timber.i("Current Module In is $currentModule")
+        fragBinding.btnDelete.setOnClickListener { onModuleDelete(args.uid) }
         return root
     }
 
@@ -83,5 +84,10 @@ class ModuleFragment : Fragment(), LectureListener {
     override fun onDestroyView() {
         super.onDestroyView()
         _fragBinding = null
+    }
+
+    private fun onModuleDelete(moduleId: String){
+        moduleViewModel.deleteModule(moduleId)
+
     }
 }

@@ -45,14 +45,149 @@
                 android:layout_height="360dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
-                android:layout_marginTop="32dp"
                 android:layout_marginBottom="280dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
+            <TextView
+                android:id="@+id/nameHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mapView"
+                android:layout_marginTop="10dp"
+                android:text="Name:"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@+id/mapView"
+                tools:layout_editor_absoluteX="26dp"
+                tools:text="Name:" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mapView"
+                android:layout_marginTop="10dp"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toRightOf="@+id/nameHeading"
+                app:layout_constraintTop_toBottomOf="@+id/mapView"
+                tools:layout_editor_absoluteX="26dp"
+                tools:text="Name" />
+
+            <TextView
+                android:id="@+id/moduleHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Module:"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@+id/nameHeading"
+                tools:layout_editor_absoluteX="26dp"
+                tools:text="Module:" />
+
+            <TextView
+                android:id="@+id/module"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mapView"
+                android:layout_marginTop="10dp"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toRightOf="@+id/moduleHeading"
+                app:layout_constraintTop_toBottomOf="@+id/name"
+                tools:layout_editor_absoluteX="26dp"
+                tools:text="Module Code" />
+
+            <TextView
+                android:id="@+id/lectureDayHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Module:"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@+id/moduleHeading"
+                tools:layout_editor_absoluteX="26dp"
+                tools:text="Day:" />
+
+            <TextView
+                android:id="@+id/lectureDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toRightOf="@+id/lectureDayHeading"
+                app:layout_constraintTop_toBottomOf="@+id/module"
+                tools:layout_editor_absoluteX="26dp"
+                tools:text="Friday" />
+
+            <TextView
+                android:id="@+id/startTimeHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Time:"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@+id/lectureDayHeading"
+                tools:layout_editor_absoluteX="26dp"
+                tools:text="Time:" />
+
+            <TextView
+                android:id="@+id/startTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toRightOf="@+id/startTimeHeading"
+                app:layout_constraintTop_toBottomOf="@+id/lectureDay"
+                tools:layout_editor_absoluteX="26dp"
+                tools:text="13:00" />
+            <TextView
+                android:id="@+id/signedInHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Signed In:"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@+id/startTimeHeading"
+                tools:layout_editor_absoluteX="26dp"
+                tools:text="Signed In:" />
+
+            <TextView
+                android:id="@+id/signedIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toRightOf="@+id/signedInHeading"
+                app:layout_constraintTop_toBottomOf="@+id/startTime"
+                tools:layout_editor_absoluteX="26dp"
+                tools:text="13:00" />
+
+            <TextView
+                android:id="@+id/viewMethodHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="View Method:"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@+id/signedInHeading"
+                tools:layout_editor_absoluteX="26dp"
+                tools:text="View Method:" />
+
+            <TextView
+                android:id="@+id/viewMethod"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toRightOf="@+id/viewMethodHeading"
+                app:layout_constraintTop_toBottomOf="@+id/signedIn"
+                tools:layout_editor_absoluteX="26dp"
+                tools:text="In Person" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </RelativeLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

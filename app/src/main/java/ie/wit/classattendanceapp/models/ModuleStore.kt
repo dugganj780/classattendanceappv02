@@ -7,6 +7,7 @@ interface ModuleStore {
     fun createModule(module: ModuleModel)
     fun findModuleById(uid: String, module: MutableLiveData<ModuleModel>)
     fun updateModule(module: ModuleModel)
+    fun deleteModule(moduleId: String)
     /*
     fun delete(module: ModuleModel)
     fun findOne(id: Long): ModuleModel?
