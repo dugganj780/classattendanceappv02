@@ -8,21 +8,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import ie.wit.classattendanceapp.databinding.FragmentModuleBinding
 import ie.wit.classattendanceapp.databinding.FragmentSignInBinding
 import ie.wit.classattendanceapp.main.ClassAttendanceApp
-import ie.wit.classattendanceapp.models.LectureModel
-import ie.wit.classattendanceapp.models.ModuleModel
 import ie.wit.classattendanceapp.models.SignInModel
-import ie.wit.classattendanceapp.ui.module.ModuleFragmentArgs
-import ie.wit.classattendanceapp.ui.module.ModuleViewModel
 import timber.log.Timber
 
 class SignInFragment: Fragment() {

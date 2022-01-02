@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ie.wit.classattendanceapp.firebase.FirebaseDBManagerModules
-import ie.wit.classattendanceapp.models.ModuleManager
 import ie.wit.classattendanceapp.models.ModuleModel
 import timber.log.Timber
 import java.lang.Exception

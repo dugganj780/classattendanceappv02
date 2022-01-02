@@ -2,9 +2,7 @@ package ie.wit.classattendanceapp.ui.attendance
 
 import android.os.Bundle
 import android.view.*
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -12,22 +10,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.firebase.auth.FirebaseAuth
 import ie.wit.classattendanceapp.R
-import ie.wit.classattendanceapp.adapters.ModuleAdapter
 import ie.wit.classattendanceapp.databinding.FragmentAttendanceBinding
-import ie.wit.classattendanceapp.databinding.FragmentGalleryBinding
-import ie.wit.classattendanceapp.databinding.FragmentModuleListBinding
 import ie.wit.classattendanceapp.main.ClassAttendanceApp
-import ie.wit.classattendanceapp.models.ModuleModel
 import ie.wit.classattendanceapp.adapters.SignInAdapter
 import ie.wit.classattendanceapp.adapters.SignInListener
-import ie.wit.classattendanceapp.models.LectureModel
 import ie.wit.classattendanceapp.models.SignInModel
-import ie.wit.classattendanceapp.ui.login.LoginViewModel
-import ie.wit.classattendanceapp.ui.module.ModuleFragmentDirections
-import ie.wit.classattendanceapp.ui.modulelist.ModuleListFragmentDirections
-import ie.wit.classattendanceapp.ui.modulelist.ModuleListViewModel
 import timber.log.Timber
 
 class AttendanceFragment : Fragment(), SignInListener {
@@ -35,7 +23,6 @@ class AttendanceFragment : Fragment(), SignInListener {
     private var _fragBinding: FragmentAttendanceBinding? = null
     private val fragBinding get() = _fragBinding!!
     private lateinit var attendanceViewModel: AttendanceViewModel
-    //val loginViewModel : LoginViewModel by activityViewModels()
 
     private val args by navArgs<AttendanceFragmentArgs>()
 
@@ -108,29 +95,5 @@ class AttendanceFragment : Fragment(), SignInListener {
         super.onDestroyView()
         _fragBinding = null
     }
-
-
-/*
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        binding.recyclerView.adapter?.notifyDataSetChanged()
-        super.onActivityResult(requestCode, resultCode, data)
-    }
-
-    private fun loadModules(){
-        app.students.findUserModules(student)?.let { showModules(it) }
-    }
-
-    fun showModules (modules: List<ModuleModel>) {
-        binding.recyclerView.adapter = ModuleAdapter(modules, this)
-        binding.recyclerView.adapter?.notifyDataSetChanged()
-    }
-
-    private fun registerRefreshCallback() {
-        refreshIntentLauncher =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult())
-            { loadModules() }
-    }
-
- */
 
 }

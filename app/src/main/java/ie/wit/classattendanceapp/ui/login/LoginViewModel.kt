@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseUser
 import ie.wit.classattendanceapp.firebase.FirebaseAuthManager
 import ie.wit.classattendanceapp.firebase.FirebaseDBManagerUsers
-import ie.wit.classattendanceapp.models.ModuleModel
 import ie.wit.classattendanceapp.models.UserModel
 import timber.log.Timber
 import java.lang.Exception

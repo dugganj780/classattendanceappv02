@@ -89,49 +89,4 @@ object FirebaseDBManagerSignIns : SignInStore {
                 }
             })
     }
-
-    /*
-   override fun findById(uid: String, student: MutableLiveData<UserModel>){
-       database.child("users").child(uid).get().addOnSuccessListener {
-           student.value = it.getValue(UserModel::class.java)
-           /*
-           if (student.value == null){
-               student.value = UserModel()
-           }
-            */
-           Timber.i("firebase Got value ${it.value}")
-       }.addOnFailureListener{
-           Timber.e("firebase Error getting data $it")
-       }
-
-   }
-
-   override fun updateUserModules(uid: String, modules:MutableList<ModuleModel>){
-       val childUpdate: MutableMap<String, Any?> = HashMap()
-       childUpdate["users/$uid/modules"] = modules
-   }
-
-
-       override fun findAllUsers(userList: MutableLiveData<List<UserModel>>) {
-       TODO("Not yet implemented")
-   }
-
-
-   override fun updateUser(firebaseUser: MutableLiveData<FirebaseUser>) {
-       TODO("Not yet implemented")
-   }
-
-   override fun create(firebaseUser: MutableLiveData<FirebaseUser>, donation: DonationModel) {
-       TODO("Not yet implemented")
-   }
-
-   override fun delete(userid: String, donationid: String) {
-       TODO("Not yet implemented")
-   }
-
-   override fun update(userid: String, donationid: String, donation: DonationModel) {
-       TODO("Not yet implemented")
-   }
-
-    */
 }

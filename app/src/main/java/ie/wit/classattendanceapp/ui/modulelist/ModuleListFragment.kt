@@ -1,24 +1,16 @@
 package ie.wit.classattendanceapp.ui.modulelist
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+
 import android.os.Bundle
 import android.view.*
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.NavigationUI
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import ie.wit.classattendanceapp.R
 import ie.wit.classattendanceapp.main.ClassAttendanceApp
@@ -27,7 +19,6 @@ import ie.wit.classattendanceapp.adapters.ModuleListener
 import ie.wit.classattendanceapp.databinding.FragmentModuleListBinding
 import ie.wit.classattendanceapp.models.ModuleModel
 import ie.wit.classattendanceapp.ui.login.LoginViewModel
-import ie.wit.classattendanceapp.models.UserModel
 import timber.log.Timber
 
 
@@ -38,7 +29,6 @@ class ModuleListFragment : Fragment(), ModuleListener {
     private lateinit var moduleListViewModel: ModuleListViewModel
     val loginViewModel : LoginViewModel by activityViewModels()
 
-    //private val args by navArgs<ModuleListFragmentArgs>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -116,28 +106,7 @@ class ModuleListFragment : Fragment(), ModuleListener {
             if (fragBinding.swiperefresh.isRefreshing)
                 fragBinding.swiperefresh.isRefreshing = false
         }
-/*
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        binding.recyclerView.adapter?.notifyDataSetChanged()
-        super.onActivityResult(requestCode, resultCode, data)
-    }
 
-    private fun loadModules(){
-        app.students.findUserModules(student)?.let { showModules(it) }
-    }
-
-    fun showModules (modules: List<ModuleModel>) {
-        binding.recyclerView.adapter = ModuleAdapter(modules, this)
-        binding.recyclerView.adapter?.notifyDataSetChanged()
-    }
-
-    private fun registerRefreshCallback() {
-        refreshIntentLauncher =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult())
-            { loadModules() }
-    }
-
- */
     }
 }
 

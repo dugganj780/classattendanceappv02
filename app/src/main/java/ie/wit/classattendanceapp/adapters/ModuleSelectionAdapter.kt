@@ -3,15 +3,9 @@ package ie.wit.classattendanceapp.adapters
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.CheckBox
-import android.widget.CompoundButton
-import androidx.activity.result.ActivityResultLauncher
 import androidx.recyclerview.widget.RecyclerView
 import ie.wit.classattendanceapp.databinding.CardModuleSelectionBinding
 import ie.wit.classattendanceapp.models.ModuleModel
-import ie.wit.classattendanceapp.models.UserModel
-import timber.log.Timber
-import timber.log.Timber.i
 
 
 interface ModuleSelectionListener {

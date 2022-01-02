@@ -3,26 +3,13 @@ package ie.wit.classattendanceapp.ui.createaccount
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil.setContentView
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
-import com.google.android.material.snackbar.Snackbar
 import ie.wit.classattendanceapp.R
-import ie.wit.classattendanceapp.activities.Home
 import ie.wit.classattendanceapp.databinding.CreateAccountBinding
-import ie.wit.classattendanceapp.databinding.LoginBinding
-import ie.wit.classattendanceapp.models.UserManager
 import ie.wit.classattendanceapp.models.UserModel
-import ie.wit.classattendanceapp.ui.login.LoginViewModel
 import timber.log.Timber
-import androidx.lifecycle.Observer
-import com.google.firebase.auth.FirebaseAuth
 import ie.wit.classattendanceapp.ui.login.Login
 
 
@@ -93,5 +80,4 @@ class CreateAccount: AppCompatActivity() {
         return valid
     }
 
-    //Required to exit app from Login Screen - must investigate this further
 }

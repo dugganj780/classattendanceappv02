@@ -3,19 +3,14 @@ package ie.wit.classattendanceapp.ui.signin
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import ie.wit.classattendanceapp.firebase.FirebaseDBManagerModules
 import ie.wit.classattendanceapp.firebase.FirebaseDBManagerSignIns
-import ie.wit.classattendanceapp.models.ModuleModel
 import ie.wit.classattendanceapp.models.SignInModel
 import timber.log.Timber
 import java.lang.Exception
-import kotlin.math.sign
 
 class SignInViewModel: ViewModel() {
     private val signIn = MutableLiveData<SignInModel>()

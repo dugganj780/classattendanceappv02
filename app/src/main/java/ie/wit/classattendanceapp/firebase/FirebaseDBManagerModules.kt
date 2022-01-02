@@ -5,8 +5,6 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import ie.wit.classattendanceapp.models.ModuleModel
 import ie.wit.classattendanceapp.models.ModuleStore
-import ie.wit.classattendanceapp.models.UserModel
-import ie.wit.classattendanceapp.models.UserStore
 import timber.log.Timber
 
 var moduleDatabase: DatabaseReference = FirebaseDatabase.getInstance().reference

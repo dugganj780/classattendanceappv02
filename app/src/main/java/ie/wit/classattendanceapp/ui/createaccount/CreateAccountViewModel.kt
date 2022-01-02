@@ -5,9 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import ie.wit.classattendanceapp.models.UserModel
 import ie.wit.classattendanceapp.firebase.FirebaseAuthManager
-import ie.wit.classattendanceapp.firebase.FirebaseDBManagerUsers
 import timber.log.Timber
 
 class CreateAccountViewModel (app: Application) : AndroidViewModel(app) {

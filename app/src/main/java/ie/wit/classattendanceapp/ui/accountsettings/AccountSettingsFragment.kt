@@ -1,6 +1,5 @@
 package ie.wit.classattendanceapp.ui.accountsettings
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,17 +9,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
-import ie.wit.classattendanceapp.activities.Home
 import ie.wit.classattendanceapp.databinding.FragmentAccountSettingsBinding
-import ie.wit.classattendanceapp.databinding.FragmentAttendanceBinding
 import ie.wit.classattendanceapp.main.ClassAttendanceApp
-import ie.wit.classattendanceapp.models.SignInModel
 import ie.wit.classattendanceapp.models.UserModel
 import ie.wit.classattendanceapp.ui.attendance.AttendanceFragmentArgs
-import ie.wit.classattendanceapp.ui.attendance.AttendanceViewModel
-import ie.wit.classattendanceapp.ui.moduleselection.ModuleSelectionFragmentDirections
 import timber.log.Timber
 
 class AccountSettingsFragment : Fragment(){

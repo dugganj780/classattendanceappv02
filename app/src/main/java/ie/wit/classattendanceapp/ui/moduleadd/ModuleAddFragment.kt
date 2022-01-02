@@ -5,18 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import ie.wit.classattendanceapp.databinding.FragmentModuleAddBinding
-import ie.wit.classattendanceapp.databinding.FragmentModuleBinding
-import ie.wit.classattendanceapp.databinding.FragmentModuleSelectionBinding
 import ie.wit.classattendanceapp.models.LectureModel
 import ie.wit.classattendanceapp.models.ModuleModel
-import ie.wit.classattendanceapp.models.UserModel
-import ie.wit.classattendanceapp.ui.moduleselection.ModuleSelectionFragmentDirections
-import ie.wit.classattendanceapp.ui.moduleselection.ModuleSelectionViewModel
 import java.util.*
 
 class ModuleAddFragment: Fragment() {

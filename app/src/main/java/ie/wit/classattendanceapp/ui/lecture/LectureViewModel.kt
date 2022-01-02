@@ -28,11 +28,6 @@ class LectureViewModel : ViewModel() {
         get() = student
         set(value){student.value = value.value}
 
-    /*
-    fun getLecture(id: Int) {
-        lecture.value = LectureManager.findById(id)
-    }
-     */
 
     fun getModule(uid: String){
         Timber.i("$uid")

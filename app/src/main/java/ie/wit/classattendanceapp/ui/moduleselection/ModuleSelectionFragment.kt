@@ -10,20 +10,14 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.firebase.auth.FirebaseAuth
 import ie.wit.classattendanceapp.R
-import ie.wit.classattendanceapp.adapters.ModuleAdapter
 import ie.wit.classattendanceapp.adapters.ModuleSelectionAdapter
 import ie.wit.classattendanceapp.adapters.ModuleSelectionListener
-import ie.wit.classattendanceapp.databinding.FragmentModuleListBinding
 import ie.wit.classattendanceapp.databinding.FragmentModuleSelectionBinding
 import ie.wit.classattendanceapp.main.ClassAttendanceApp
 import ie.wit.classattendanceapp.models.ModuleModel
 import ie.wit.classattendanceapp.models.UserModel
 import ie.wit.classattendanceapp.ui.login.LoginViewModel
-import ie.wit.classattendanceapp.ui.modulelist.ModuleListFragmentDirections
-import ie.wit.classattendanceapp.ui.modulelist.ModuleListViewModel
-import timber.log.Timber
 
 class ModuleSelectionFragment: Fragment(), ModuleSelectionListener {
     lateinit var app: ClassAttendanceApp
@@ -112,12 +106,5 @@ class ModuleSelectionFragment: Fragment(), ModuleSelectionListener {
         super.onDestroyView()
         _fragBinding = null
     }
-/*
-    override fun onModuleCheck(module: ModuleModel){
-        student.modules?.add(module)
-        .updateUser(student)
-        Timber.i("$student")
-    }
-   
- */
+
 }

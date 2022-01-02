@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
@@ -17,14 +16,11 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.firebase.auth.FirebaseAuth
 import ie.wit.classattendanceapp.databinding.FragmentLectureBinding
-import ie.wit.classattendanceapp.databinding.HomeBinding
 import ie.wit.classattendanceapp.helpers.checkLocationPermissions
 import ie.wit.classattendanceapp.models.LectureModel
 import ie.wit.classattendanceapp.models.ModuleModel
 import ie.wit.classattendanceapp.models.SignInModel
 import ie.wit.classattendanceapp.models.UserModel
-import ie.wit.classattendanceapp.ui.module.ModuleViewModel
-import ie.wit.classattendanceapp.ui.modulelist.ModuleListFragmentDirections
 import ie.wit.classattendanceapp.ui.signin.SignInViewModel
 import timber.log.Timber
 import java.text.SimpleDateFormat
@@ -54,26 +50,10 @@ class LectureFragment : Fragment() {
         locationService = LocationServices.getFusedLocationProviderClient(requireActivity())
         doPermissionLauncher()
 
-        /*
-        requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission())
-        { isGranted: Boolean ->
-            if (isGranted) {
-                Timber.i("Premission step 1")
-                setCurrentLocation()
-            } else {
-                Timber.i("Premission step 2")
-                signInViewModel.locationUpdate(currentSignIn, currentSignIn.lat, currentSignIn.lng)
-            }
-        }
-
-         */
-
         if (checkLocationPermissions(activity!!)) {
             Timber.i("Premission step 3")
             setCurrentLocation()
         }
-        //currentSignIn.lat = location.lat
-        //currentSignIn.lng = location.lng
 
     }
 
@@ -229,8 +209,6 @@ class LectureFragment : Fragment() {
         }
 
     private fun render() {
-        // fragBinding.editAmount.setText(donation.amount.toString())
-        // fragBinding.editPaymenttype.text = donation.paymentmethod
         fragBinding.lecturevm = lectureViewModel
     }
 
@@ -246,13 +224,8 @@ class LectureFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        //fragBinding.lecturevm = lectureViewModel
-        //doPermissionLauncher()
-
-
         lectureViewModel.getModule(args.moduleId)
         lectureViewModel.getStudent(FirebaseAuth.getInstance().currentUser!!.uid)
-        //currentLecture = lectureViewModel.getLecture(currentModule, args.lectureId)
 
     }
 
