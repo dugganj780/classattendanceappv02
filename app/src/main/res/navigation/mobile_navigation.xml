@@ -84,4 +84,13 @@
             android:name="signInId"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/accountSettingsFragment"
+        android:name="ie.wit.classattendanceapp.ui.accountsettings.AccountSettingsFragment"
+        android:label="@string/menu_myAccount"
+        tools:layout="@layout/fragment_account_settings" >
+        <action
+            android:id="@+id/action_accountSettingsFragment_to_moduleListFragment"
+            app:destination="@id/moduleListFragment" />
+    </fragment>
 </navigation>
